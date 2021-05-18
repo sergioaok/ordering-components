@@ -45,7 +45,7 @@ var ApiContext = /*#__PURE__*/(0, _react.createContext)();
 
 exports.ApiContext = ApiContext;
 
-var ApiProvider = function ApiProvider(_ref) {
+var ApiProvider = /*#__PURE__*/_react.default.memo(function (_ref) {
   var settings = _ref.settings,
       children = _ref.children;
 
@@ -78,8 +78,8 @@ var ApiProvider = function ApiProvider(_ref) {
   };
   return /*#__PURE__*/_react.default.createElement(ApiContext.Provider, {
     value: [ordering, functions]
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "HOLA MUNDO DESDE TEST"), children);
-};
+  }, children);
+});
 /**
  * Hook to get api state
  */
