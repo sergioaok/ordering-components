@@ -33,10 +33,9 @@ export const ApiProvider = ({ settings, children }) => {
     setLanguage: _setLanguage
   }
 
-  console.log('AQUI ESTAMOS EN API PROVIDER')
-
   return (
     <ApiContext.Provider value={[ordering, functions]}>
+      <h1>HOLA MUNDO DESDE TEST</h1>
       {children}
     </ApiContext.Provider>
   )
