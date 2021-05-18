@@ -38,6 +38,8 @@ export const ApiProvider = React.memo(({ settings, children }) => {
       {children}
     </ApiContext.Provider>
   )
+}, (prevProps, nextProps) => {
+  return prevProps.settings.language !== nextProps.settings.language;
 })
 
 /**

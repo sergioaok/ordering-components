@@ -79,6 +79,8 @@ var ApiProvider = /*#__PURE__*/_react.default.memo(function (_ref) {
   return /*#__PURE__*/_react.default.createElement(ApiContext.Provider, {
     value: [ordering, functions]
   }, children);
+}, function (prevProps, nextProps) {
+  return prevProps.settings.language !== nextProps.settings.language;
 });
 /**
  * Hook to get api state
