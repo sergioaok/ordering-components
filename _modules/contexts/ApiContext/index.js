@@ -45,7 +45,7 @@ var ApiContext = /*#__PURE__*/(0, _react.createContext)();
 
 exports.ApiContext = ApiContext;
 
-var ApiProvider = /*#__PURE__*/_react.default.memo(function (_ref) {
+var ApiProvider = function ApiProvider(_ref) {
   var settings = _ref.settings,
       children = _ref.children;
 
@@ -79,9 +79,7 @@ var ApiProvider = /*#__PURE__*/_react.default.memo(function (_ref) {
   return /*#__PURE__*/_react.default.createElement(ApiContext.Provider, {
     value: [ordering, functions]
   }, children);
-}, function (prevProps, nextProps) {
-  return prevProps.settings.language !== nextProps.settings.language;
-});
+};
 /**
  * Hook to get api state
  */

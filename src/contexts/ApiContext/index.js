@@ -11,7 +11,7 @@ export const ApiContext = createContext()
  * Api provider to manage api request
  * @param {props} props
  */
-export const ApiProvider = React.memo(({ settings, children }) => {
+export const ApiProvider = ({ settings, children }) => {
   const [ordering, setOrdering] = useState(new Ordering(settings))
   const [language, setLanguage] = useState(settings.language)
 
@@ -38,9 +38,7 @@ export const ApiProvider = React.memo(({ settings, children }) => {
       {children}
     </ApiContext.Provider>
   )
-}, (prevProps, nextProps) => {
-  return prevProps.settings.language !== nextProps.settings.language;
-})
+}
 
 /**
  * Hook to get api state
