@@ -324,3 +324,5 @@ GoogleMapsMap.propTypes = {
    */
   onError: PropTypes.func
 }
+
+export default GoogleMapsMap

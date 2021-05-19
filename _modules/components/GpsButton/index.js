@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GoogleGpsButton = exports.GpsButton = void 0;
+exports.GoogleGpsButton = exports.default = exports.GpsButton = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -154,6 +154,8 @@ GpsButton.propTypes = {
    */
   onError: _propTypes.default.func
 };
+var _default = GpsButton;
+exports.default = _default;
 var GoogleGpsButton = (0, _WrapperGoogleMaps.WrapperGoogleMaps)(GpsButton);
 exports.GoogleGpsButton = GoogleGpsButton;
 GoogleGpsButton.propTypes = {

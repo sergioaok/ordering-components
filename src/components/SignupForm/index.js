@@ -287,3 +287,5 @@ SignupForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default SignupForm

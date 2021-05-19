@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BusinessesMap = void 0;
+exports.default = exports.BusinessesMap = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -151,3 +151,5 @@ BusinessesMap.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = BusinessesMap;
+exports.default = _default;

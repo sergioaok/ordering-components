@@ -300,3 +300,5 @@ OrderDetails.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default OrderDetails

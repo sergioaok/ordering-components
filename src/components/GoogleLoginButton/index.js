@@ -231,3 +231,5 @@ GoogleLoginButton.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default GoogleLoginButton;

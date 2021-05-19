@@ -16,7 +16,11 @@ module.exports = {
   optimization: {
     minimizer: [
       new TerserPlugin()
-    ]
+    ],
+    splitChunks: {
+      chunks: 'all',
+      maxSize: 250000
+    }
   },
   resolve: {
     alias: {

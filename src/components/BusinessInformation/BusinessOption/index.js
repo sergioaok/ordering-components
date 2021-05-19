@@ -84,3 +84,5 @@ BusinessOption.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessOption

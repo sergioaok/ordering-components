@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProductsListing = void 0;
+exports.default = exports.ProductsListing = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -16,6 +16,10 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 var _ApiContext = require("../../contexts/ApiContext");
 
 var _OrderContext = require("../../contexts/OrderContext");
+
+var _orderingApiSdk = require("ordering-api-sdk");
+
+var _ProductsList = _interopRequireDefault(require("../ProductsList"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -283,3 +287,5 @@ ProductsListing.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = ProductsListing;
+exports.default = _default;

@@ -38,3 +38,5 @@ export const ExamineClick = ({ onFiles, childRef, children, className, style, ac
     </div>
   )
 }
+
+export default ExamineClick

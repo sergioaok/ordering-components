@@ -117,3 +117,5 @@ OrderReview.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default OrderReview

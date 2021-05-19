@@ -117,3 +117,5 @@ DriverTips.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default DriverTips

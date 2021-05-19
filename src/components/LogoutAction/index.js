@@ -127,3 +127,5 @@ LogoutAction.propTypes = {
 LogoutAction.defaultProps = {
   useDefualtSessionManager: true
 }
+
+export default LogoutAction

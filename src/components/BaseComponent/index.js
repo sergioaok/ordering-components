@@ -50,3 +50,5 @@ BaseComponent.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BaseComponent

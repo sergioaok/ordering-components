@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ProductOption from '../ProductOption'
 
 /**
  * Component to render product option suboption
@@ -153,3 +154,5 @@ ProductOptionSuboption.defaultProps = {
   state: {},
   balance: 0
 }
+
+export default ProductOptionSuboption

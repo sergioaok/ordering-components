@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DriverTips = void 0;
+exports.default = exports.DriverTips = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -163,3 +163,5 @@ DriverTips.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = DriverTips;
+exports.default = _default;

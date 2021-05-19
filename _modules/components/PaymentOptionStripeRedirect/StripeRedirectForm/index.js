@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StripeRedirectForm = void 0;
+exports.default = exports.StripeRedirectForm = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -101,3 +101,5 @@ StripeRedirectForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = StripeRedirectForm;
+exports.default = _default;

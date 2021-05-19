@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CmsContent = void 0;
+exports.default = exports.CmsContent = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -190,3 +190,5 @@ CmsContent.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = CmsContent;
+exports.default = _default;

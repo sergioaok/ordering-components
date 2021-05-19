@@ -147,3 +147,5 @@ MainSearch.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default MainSearch

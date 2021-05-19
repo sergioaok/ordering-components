@@ -95,3 +95,5 @@ Cart.propTypes = {
    */
   validationFieldsType: PropTypes.string
 }
+
+export default Cart

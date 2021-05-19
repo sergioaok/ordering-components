@@ -3,11 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProductOptionSuboption = void 0;
+exports.default = exports.ProductOptionSuboption = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _ProductOption = _interopRequireDefault(require("../ProductOption"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -179,3 +181,5 @@ ProductOptionSuboption.defaultProps = {
   state: {},
   balance: 0
 };
+var _default = ProductOptionSuboption;
+exports.default = _default;

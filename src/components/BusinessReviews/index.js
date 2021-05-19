@@ -146,3 +146,5 @@ BusinessReviews.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessReviews

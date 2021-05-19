@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UserFormDetails = void 0;
+exports.default = exports.UserFormDetails = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -523,3 +523,5 @@ UserFormDetails.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = UserFormDetails;
+exports.default = _default;

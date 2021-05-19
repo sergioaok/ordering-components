@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AddressDetails = void 0;
+exports.default = exports.AddressDetails = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -209,3 +209,5 @@ AddressDetails.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = AddressDetails;
+exports.default = _default;

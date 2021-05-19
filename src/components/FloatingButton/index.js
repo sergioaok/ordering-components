@@ -68,3 +68,5 @@ FloatingButton.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default FloatingButton

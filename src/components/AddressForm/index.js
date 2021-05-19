@@ -259,3 +259,5 @@ AddressForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default AddressForm

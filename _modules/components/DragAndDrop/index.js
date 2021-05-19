@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DragAndDrop = void 0;
+exports.default = exports.DragAndDrop = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -70,3 +70,5 @@ var DragAndDrop = function DragAndDrop(_ref) {
 };
 
 exports.DragAndDrop = DragAndDrop;
+var _default = DragAndDrop;
+exports.default = _default;

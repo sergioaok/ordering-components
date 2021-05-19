@@ -209,3 +209,5 @@ FacebookLoginButton.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default FacebookLoginButton

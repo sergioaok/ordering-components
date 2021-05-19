@@ -116,3 +116,5 @@ AddressDetails.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default AddressDetails

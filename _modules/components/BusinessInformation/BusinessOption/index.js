@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BusinessOption = void 0;
+exports.default = exports.BusinessOption = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -100,3 +100,5 @@ BusinessOption.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = BusinessOption;
+exports.default = _default;

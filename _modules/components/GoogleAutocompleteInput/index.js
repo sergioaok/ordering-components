@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GoogleAutocompleteInput = void 0;
+exports.default = exports.GoogleAutocompleteInput = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -172,3 +172,5 @@ AutocompleteInput.defaultProps = {
 };
 var GoogleAutocompleteInput = (0, _WrapperGoogleMaps.WrapperGoogleMaps)(AutocompleteInput);
 exports.GoogleAutocompleteInput = GoogleAutocompleteInput;
+var _default = GoogleAutocompleteInput;
+exports.default = _default;

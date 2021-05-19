@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SingleProductCard = void 0;
+exports.default = exports.SingleProductCard = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -78,3 +78,5 @@ SingleProductCard.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = SingleProductCard;
+exports.default = _default;

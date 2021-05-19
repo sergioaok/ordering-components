@@ -384,3 +384,5 @@ UserFormDetails.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default UserFormDetails

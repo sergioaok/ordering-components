@@ -141,3 +141,5 @@ PaymentOptionPaypal.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default PaymentOptionPaypal

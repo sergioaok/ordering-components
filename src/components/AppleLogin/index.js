@@ -161,3 +161,5 @@ AppleLogin.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default AppleLogin

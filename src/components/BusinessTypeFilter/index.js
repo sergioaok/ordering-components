@@ -132,3 +132,5 @@ BusinessTypeFilter.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessTypeFilter

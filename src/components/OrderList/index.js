@@ -322,3 +322,5 @@ OrderList.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default OrderList

@@ -67,3 +67,5 @@ SearchOptions.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default SearchOptions

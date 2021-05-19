@@ -34,3 +34,5 @@ export class Emitter {
     this._events[name].forEach(fireCallbacks)
   }
 }
+
+export default Emitter

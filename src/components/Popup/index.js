@@ -157,3 +157,5 @@ Popup.defaultProps = {
   closeOnBackdrop: true,
   closeWithKeyboard: true
 }
+
+export default Popup

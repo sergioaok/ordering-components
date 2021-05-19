@@ -250,3 +250,5 @@ PhoneAutocomplete.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default PhoneAutocomplete

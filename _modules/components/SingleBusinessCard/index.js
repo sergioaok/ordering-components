@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SingleBusinessCard = void 0;
+exports.default = exports.SingleBusinessCard = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -91,3 +91,5 @@ SingleBusinessCard.defaultProps = {
   distance: 0,
   delivery_time: ''
 };
+var _default = SingleBusinessCard;
+exports.default = _default;

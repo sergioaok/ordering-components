@@ -98,3 +98,5 @@ BusinessSortControl.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessSortControl

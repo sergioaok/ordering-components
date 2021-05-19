@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BaseComponent = void 0;
+exports.default = exports.BaseComponent = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -53,3 +53,5 @@ BaseComponent.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = BaseComponent;
+exports.default = _default;

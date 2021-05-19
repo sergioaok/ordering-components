@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useOrder } from '../../contexts/OrderContext'
 import { useApi } from '../../contexts/ApiContext'
+import PaymentOptionPaypal from '../PaymentOptionPaypal'
 
 const paymethodsExisting = ['stripe', 'stripe_direct', 'stripe_connect', 'paypal']
 const paymethodsNotAllowed = ['paypal_express', 'authorize']
@@ -191,3 +192,5 @@ PaymentOptions.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default PaymentOptions

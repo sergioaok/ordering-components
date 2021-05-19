@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Emitter = void 0;
+exports.default = exports.Emitter = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -64,3 +64,5 @@ var Emitter = /*#__PURE__*/function () {
 }();
 
 exports.Emitter = Emitter;
+var _default = Emitter;
+exports.default = _default;

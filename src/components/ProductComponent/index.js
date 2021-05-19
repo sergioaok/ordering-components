@@ -267,3 +267,5 @@ ProductComponent.propTypes = {
 ProductComponent.defaultProps = {
   productName: '',
 }
+
+export default ProductComponent

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useApi } from '../../contexts/ApiContext'
 import { useOrder } from '../../contexts/OrderContext'
+import { Product } from 'ordering-api-sdk'
+import ProductsList from '../ProductsList'
 
 export const ProductsListing = (props) => {
   const {
@@ -164,3 +166,5 @@ ProductsListing.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default ProductsListing

@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BusinessAndProductList = void 0;
+exports.default = exports.BusinessAndProductList = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -664,3 +664,5 @@ BusinessAndProductList.propTypes = {
   UIComponent: _propTypes.default.elementType
 };
 BusinessAndProductList.defaultProps = {};
+var _default = BusinessAndProductList;
+exports.default = _default;

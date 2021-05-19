@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StripeElementsForm = void 0;
+exports.default = exports.StripeElementsForm = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -144,3 +144,5 @@ StripeElementsForm.propTypes = {
    */
   handleSource: _propTypes.default.func
 };
+var _default = StripeElementsForm;
+exports.default = _default;

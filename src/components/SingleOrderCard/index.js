@@ -58,3 +58,5 @@ SingleOrderCard.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default SingleOrderCard

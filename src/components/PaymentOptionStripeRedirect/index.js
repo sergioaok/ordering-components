@@ -117,3 +117,4 @@ PaymentOptionStripeRedirect.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+export default PaymentOptionStripeRedirect

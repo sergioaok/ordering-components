@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PaymentOptionCash = void 0;
+exports.default = exports.PaymentOptionCash = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -83,3 +83,5 @@ PaymentOptionCash.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = PaymentOptionCash;
+exports.default = _default;

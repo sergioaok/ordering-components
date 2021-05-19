@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Popup = void 0;
+exports.default = exports.Popup = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -201,3 +201,5 @@ Popup.defaultProps = {
   closeOnBackdrop: true,
   closeWithKeyboard: true
 };
+var _default = Popup;
+exports.default = _default;

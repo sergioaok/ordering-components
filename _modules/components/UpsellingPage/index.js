@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UpsellingPage = void 0;
+exports.default = exports.UpsellingPage = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -213,3 +213,5 @@ UpsellingPage.propTypes = {
    */
   onSave: _propTypes.default.func
 };
+var _default = UpsellingPage;
+exports.default = _default;

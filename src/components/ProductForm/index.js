@@ -532,3 +532,5 @@ ProductForm.defaultProps = {
   useOrderContext: true,
   balance: 0
 }
+
+export default ProductForm

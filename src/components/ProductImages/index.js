@@ -62,3 +62,5 @@ ProductImages.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default ProductImages

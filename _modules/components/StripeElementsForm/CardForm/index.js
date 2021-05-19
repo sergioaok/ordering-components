@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CardForm = void 0;
+exports.default = exports.CardForm = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -310,3 +310,5 @@ CardForm.propTypes = {
 CardForm.defaultProps = {
   autosave: true
 };
+var _default = CardForm;
+exports.default = _default;

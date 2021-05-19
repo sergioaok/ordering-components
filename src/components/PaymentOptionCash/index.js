@@ -72,3 +72,5 @@ PaymentOptionCash.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default PaymentOptionCash

@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SignupForm = void 0;
+exports.default = exports.SignupForm = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -482,3 +482,5 @@ SignupForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = SignupForm;
+exports.default = _default;

@@ -78,3 +78,5 @@ SingleBusinessCard.defaultProps = {
   distance: 0,
   delivery_time: ''
 }
+
+export default SingleBusinessCard

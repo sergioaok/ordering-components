@@ -69,3 +69,5 @@ StripeRedirectForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default StripeRedirectForm

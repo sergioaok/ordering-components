@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PhoneAutocomplete = void 0;
+exports.default = exports.PhoneAutocomplete = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -433,3 +433,5 @@ PhoneAutocomplete.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = PhoneAutocomplete;
+exports.default = _default;

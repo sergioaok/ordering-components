@@ -328,3 +328,5 @@ LoginForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default LoginForm

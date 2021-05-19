@@ -147,3 +147,5 @@ ForgotPasswordForm.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default ForgotPasswordForm

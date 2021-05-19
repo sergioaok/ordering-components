@@ -40,3 +40,5 @@ ProductOption.propTypes = {
 ProductOption.defaultProps = {
   error: false
 }
+
+export default ProductOption

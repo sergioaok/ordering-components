@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BusinessInformation = void 0;
+exports.default = exports.BusinessInformation = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -138,3 +138,5 @@ BusinessInformation.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = BusinessInformation;
+exports.default = _default;

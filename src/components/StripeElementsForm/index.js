@@ -72,3 +72,5 @@ StripeElementsForm.propTypes = {
    */
   handleSource: PropTypes.func
 }
+
+export default StripeElementsForm

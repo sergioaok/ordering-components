@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PaymentOptionStripeRedirect = void 0;
+exports.default = exports.PaymentOptionStripeRedirect = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -185,3 +185,5 @@ PaymentOptionStripeRedirect.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = PaymentOptionStripeRedirect;
+exports.default = _default;

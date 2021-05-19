@@ -130,3 +130,5 @@ AutocompleteInput.defaultProps = {
 }
 
 export const GoogleAutocompleteInput = WrapperGoogleMaps(AutocompleteInput)
+
+export default GoogleAutocompleteInput;

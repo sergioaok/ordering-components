@@ -182,3 +182,5 @@ CardForm.propTypes = {
 CardForm.defaultProps = {
   autosave: true
 }
+
+export default CardForm

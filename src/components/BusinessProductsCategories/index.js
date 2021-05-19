@@ -58,3 +58,5 @@ BusinessProductsCategories.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessProductsCategories

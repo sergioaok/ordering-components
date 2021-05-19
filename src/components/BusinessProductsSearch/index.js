@@ -52,3 +52,5 @@ BusinessProductsSearch.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessProductsSearch

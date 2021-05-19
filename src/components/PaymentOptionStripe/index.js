@@ -227,3 +227,5 @@ PaymentOptionStripe.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default PaymentOptionStripe

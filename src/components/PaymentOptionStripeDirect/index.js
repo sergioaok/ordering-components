@@ -109,3 +109,5 @@ PaymentOptionStripeDirect.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default PaymentOptionStripeDirect

@@ -291,3 +291,5 @@ MomentOption.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default MomentOption

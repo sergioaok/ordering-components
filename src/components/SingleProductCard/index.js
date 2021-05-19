@@ -70,3 +70,5 @@ SingleProductCard.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default SingleProductCard

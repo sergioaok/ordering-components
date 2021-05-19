@@ -102,3 +102,5 @@ MyOrdersList.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default MyOrdersList

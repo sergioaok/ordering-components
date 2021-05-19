@@ -113,3 +113,5 @@ UpsellingPage.propTypes = {
    */
   onSave: PropTypes.func
 }
+
+export default UpsellingPage

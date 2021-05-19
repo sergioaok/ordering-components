@@ -73,3 +73,5 @@ OrderTypeControl.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default OrderTypeControl

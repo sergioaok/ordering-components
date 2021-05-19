@@ -91,3 +91,5 @@ BusinessInformation.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessInformation

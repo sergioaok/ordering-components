@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LogoutAction = void 0;
+exports.default = exports.LogoutAction = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -223,3 +223,5 @@ LogoutAction.propTypes = {
 LogoutAction.defaultProps = {
   useDefualtSessionManager: true
 };
+var _default = LogoutAction;
+exports.default = _default;

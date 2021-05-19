@@ -450,3 +450,5 @@ BusinessAndProductList.propTypes = {
 
 BusinessAndProductList.defaultProps = {
 }
+
+export default BusinessAndProductList

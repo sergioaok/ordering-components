@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProductImages = void 0;
+exports.default = exports.ProductImages = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -70,3 +70,5 @@ ProductImages.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = ProductImages;
+exports.default = _default;

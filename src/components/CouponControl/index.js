@@ -107,3 +107,5 @@ CouponControl.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default CouponControl

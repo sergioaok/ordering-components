@@ -197,3 +197,5 @@ Checkout.defaultProps = {
   afterElements: [],
   propsToFetch: ['id', 'name', 'email', 'cellphone', 'address', 'paymethods', 'logo', 'location']
 }
+
+export default Checkout

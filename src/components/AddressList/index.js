@@ -205,3 +205,5 @@ AddressList.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default AddressList

@@ -128,3 +128,5 @@ Messages.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default Messages

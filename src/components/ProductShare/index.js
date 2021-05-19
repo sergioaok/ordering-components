@@ -95,3 +95,5 @@ ProductShare.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default ProductShare

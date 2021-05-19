@@ -109,3 +109,5 @@ ResetPassword.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default ResetPassword

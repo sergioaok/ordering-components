@@ -95,3 +95,5 @@ CmsContent.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default  CmsContent

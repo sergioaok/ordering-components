@@ -117,3 +117,5 @@ Analytics.propTypes = {
 }
 
 Analytics.defaultProps = {}
+
+export default Analytics

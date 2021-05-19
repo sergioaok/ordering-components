@@ -72,3 +72,5 @@ ProductsList.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default ProductsList

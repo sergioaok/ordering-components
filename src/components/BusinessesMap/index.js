@@ -108,3 +108,5 @@ BusinessesMap.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessesMap

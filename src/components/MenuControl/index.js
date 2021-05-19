@@ -236,3 +236,5 @@ MenuControl.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default MenuControl

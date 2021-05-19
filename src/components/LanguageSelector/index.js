@@ -155,3 +155,5 @@ LanguageSelector.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default LanguageSelector

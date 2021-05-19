@@ -70,3 +70,5 @@ ProductIngredient.propTypes = {
 ProductIngredient.defaultProps = {
   state: {}
 }
+
+export default ProductIngredient

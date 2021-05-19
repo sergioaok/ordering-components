@@ -39,3 +39,5 @@ export const DragAndDrop = ({ onDrop, children, className, style }) => {
     </div>
   )
 }
+
+export default DragAndDrop

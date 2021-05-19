@@ -65,3 +65,5 @@ WrapperGoogleMaps.propTypes = {
 }
 
 WrapperGoogleMaps.defaultProps = {}
+
+export default WrapperGoogleMaps

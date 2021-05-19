@@ -148,3 +148,5 @@ MyOrders.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default MyOrders

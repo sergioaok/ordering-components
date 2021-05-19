@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GoogleMapsMap = exports.GoogleMaps = void 0;
+exports.default = exports.GoogleMapsMap = exports.GoogleMaps = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -446,3 +446,5 @@ GoogleMapsMap.propTypes = {
    */
   onError: _propTypes.default.func
 };
+var _default = GoogleMapsMap;
+exports.default = _default;

@@ -417,3 +417,5 @@ BusinessList.defaultProps = {
   propsToFetch: ['id', 'name', 'header', 'logo', 'name', 'schedule', 'open', 'delivery_price', 'distance', 'delivery_time', 'pickup_time', 'reviews', 'featured', 'offers', 'food', 'laundry', 'alcohol', 'groceries', 'slug'],
   paginationSettings: { initialPage: 1, pageSize: 10, controlType: 'infinity' }
 }
+
+export default BusinessList

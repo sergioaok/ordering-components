@@ -102,6 +102,8 @@ GpsButton.propTypes = {
   onError: PropTypes.func
 }
 
+export default GpsButton
+
 export const GoogleGpsButton = WrapperGoogleMaps(GpsButton)
 
 GoogleGpsButton.propTypes = {

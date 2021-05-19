@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.OrderList = void 0;
+exports.default = exports.OrderList = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -545,3 +545,5 @@ OrderList.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
+var _default = OrderList;
+exports.default = _default;

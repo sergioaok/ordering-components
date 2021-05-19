@@ -184,3 +184,5 @@ BusinessController.defaultProps = {
   beforeElements: [],
   afterElements: []
 }
+
+export default BusinessController
