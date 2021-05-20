@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactGoogleRecaptcha = _interopRequireDefault(require("react-google-recaptcha"));
 
-var _ConfigContext = require("../../../src/contexts/ConfigContext");
+var _ConfigContext = require("../../contexts/ConfigContext");
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
