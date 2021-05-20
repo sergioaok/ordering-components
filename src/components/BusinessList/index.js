@@ -23,7 +23,8 @@ export const BusinessList = (props) => {
     paginationSettings,
     customLocation,
     propsToFetch,
-    onBusinessClick
+    onBusinessClick,
+    windowPathname
   } = props
 
   const [businessesList, setBusinessesList] = useState({ businesses: [], loading: true, error: null })
@@ -241,7 +242,7 @@ export const BusinessList = (props) => {
     if (isDoordash) {
       getBusinesses(true)
     }
-  }, [window.location.pathname])
+  }, [windowPathname])
 
   /**
    * Listening initial filter
