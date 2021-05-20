@@ -657,12 +657,6 @@ Object.defineProperty(exports, "AppleLogin", {
     return _AppleLogin.AppleLogin;
   }
 });
-Object.defineProperty(exports, "ReCaptcha", {
-  enumerable: true,
-  get: function get() {
-    return _ReCaptcha.ReCaptcha;
-  }
-});
 Object.defineProperty(exports, "CODES", {
   enumerable: true,
   get: function get() {
@@ -837,7 +831,5 @@ var _ResetPassword = require("./components/ResetPassword");
 var _Analitycs = require("./components/Analitycs");
 
 var _AppleLogin = require("./components/AppleLogin");
-
-var _ReCaptcha = require("./components/ReCaptcha");
 
 var _codeNumbers = require("./constants/code-numbers");
