@@ -1,6 +1,6 @@
 import React from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useConfig } from '../../../src/contexts/ConfigContext'
+import { useConfig } from '../../contexts/ConfigContext'
 import PropTypes from 'prop-types'
 
 export const ReCaptcha = (props) => {

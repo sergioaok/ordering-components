@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { ReCaptcha } from '../../../src/components/ReCaptcha'
 
 export const LoginFormUI = (props) => {
   const {
@@ -18,7 +19,8 @@ export const LoginFormUI = (props) => {
     linkToForgetPassword,
     elementLinkToSignup,
     elementLinkToForgetPassword,
-    handleChangeInput
+    handleChangeInput,
+    handleReCaptcha
   } = props
 
   const { handleSubmit, register, errors } = useForm()
@@ -111,6 +113,7 @@ export const LoginFormUI = (props) => {
               />
               {errors.password && <i style={{ color: '#c10000' }}>{errors.password.message}</i>}
             </div>
+            {/* <ReCaptcha handleReCaptcha={handleReCaptcha} /> */}
             <div>
               {formState.loading && <p>Loading...</p>}
               {!formState.loading && formState.result?.error && <p style={{ color: '#c10000' }}>Errors: {formState.result.result}</p>}
