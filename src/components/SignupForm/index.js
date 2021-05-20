@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { useApi } from '../../contexts/ApiContext'
 import { useValidationFields } from '../../contexts/ValidationsFieldsContext'
 import { useSession } from '../../contexts/SessionContext'
+import { useConfig } from '../../contexts/ConfigContext'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 /**
  * Component to manage signup behavior without UI component
@@ -19,6 +21,7 @@ export const SignupForm = (props) => {
   const requestsState = {}
 
   const [ordering] = useApi()
+  const [, t] = useLanguage()
   const [, { login }] = useSession()
   const [validationFields] = useValidationFields()
 
@@ -26,6 +29,9 @@ export const SignupForm = (props) => {
   const [signupData, setSignupData] = useState({ email: '', cellphone: externalPhoneNumber || '', password: '' })
   const [verifyPhoneState, setVerifyPhoneState] = useState({ loading: false, result: { error: false } })
   const [checkPhoneCodeState, setCheckPhoneCodeState] = useState({ loading: false, result: { error: false } })
+  const [{ configs }] = useConfig()
+  const [reCaptchaValue, setReCaptchaValue] = useState(null)
+  const [isReCaptchaEnable, setIsReCaptchaEnable] = useState(false)
 
   /**
    * Default fuction for signup workflow
@@ -35,11 +41,25 @@ export const SignupForm = (props) => {
       handleCustomSignup(values || signupData)
       return
     }
+    const data = values || signupData
+    if (isReCaptchaEnable) {
+      if (reCaptchaValue === null) {
+        setFormState({
+          result: {
+            error: true,
+            result: t('RECAPTCHA_VALIDATION_IS_REQUIRED', 'The captcha validation is required')
+          },
+          loading: false
+        })
+        return
+      } else {
+        data.verification_code = reCaptchaValue
+      }
+    }
     try {
       setFormState({ ...formState, loading: true })
       const source = {}
       requestsState.signup = source
-      const data = values || signupData
       const response = await ordering.users().save(data, { cancelToken: source })
       setFormState({
         result: response.content,
@@ -87,6 +107,20 @@ export const SignupForm = (props) => {
       ...currentChanges
     })
   }
+
+  /**
+   * Update recaptcha value
+   * @param {string} value of recaptcha
+   */
+  const setReCaptcha = (value) => {
+    setReCaptchaValue(value)
+  }
+
+  useEffect(() => {
+    setIsReCaptchaEnable(configs &&
+      Object.keys(configs).length > 0 &&
+      configs?.security_recaptcha_signup?.value === '1')
+  }, [configs])
 
   /**
    * Check if field should be show
@@ -212,6 +246,8 @@ export const SignupForm = (props) => {
           handleButtonSignupClick={handleButtonSignupClick || handleSignupClick}
           handleSendVerifyCode={sendVerifyPhoneCode}
           handleCheckPhoneCode={checkVerifyPhoneCode}
+          enableReCaptcha={isReCaptchaEnable}
+          handleReCaptcha={setReCaptcha}
         />
       )}
     </>

@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import parsePhoneNumber from 'libphonenumber-js'
 import { useSession } from '../../contexts/SessionContext'
 import { useApi } from '../../contexts/ApiContext'
 import { useEvent } from '../../contexts/EventContext'
+import { useConfig } from '../../contexts/ConfigContext'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 /**
  * Component to manage login behavior without UI component
@@ -28,6 +30,9 @@ export const LoginForm = (props) => {
   const [verifyPhoneState, setVerifyPhoneState] = useState({ loading: false, result: { error: false } })
   const [checkPhoneCodeState, setCheckPhoneCodeState] = useState({ loading: false, result: { error: false } })
   const [events] = useEvent()
+  const [{ configs }] = useConfig()
+  const [reCaptchaValue, setReCaptchaValue] = useState(null)
+  const [isReCaptchaEnable, setIsReCaptchaEnable] = useState(false)
 
   if (!useLoginByEmail && !useLoginByCellphone) {
     defaultLoginTab = 'none'
@@ -39,6 +44,7 @@ export const LoginForm = (props) => {
 
   const [loginTab, setLoginTab] = useState(defaultLoginTab || (useLoginByCellphone && !useLoginByEmail ? 'cellphone' : 'email'))
   const [, { login, logout }] = useSession()
+  const [, t] = useLanguage()
 
   /**
    * Default fuction for login workflow
@@ -54,6 +60,20 @@ export const LoginForm = (props) => {
       const _credentials = {
         [loginTab]: values && values[loginTab] || credentials[loginTab],
         password: values && values?.password || credentials.password
+      }
+      if (isReCaptchaEnable) {
+        if (reCaptchaValue === null) {
+          setFormState({
+            result: {
+              error: true,
+              result: t('RECAPTCHA_VALIDATION_IS_REQUIRED', 'The captcha validation is required')
+            },
+            loading: false
+          })
+          return
+        } else {
+          _credentials.verification_code = reCaptchaValue
+        }
       }
       setFormState({ ...formState, loading: true })
 
@@ -127,6 +147,20 @@ export const LoginForm = (props) => {
       })
     }
   }
+
+  /**
+   * Update recaptcha value
+   * @param {string} value of recaptcha
+   */
+  const setReCaptcha = (value) => {
+    setReCaptchaValue(value)
+  }
+
+  useEffect(() => {
+    setIsReCaptchaEnable(configs &&
+      Object.keys(configs).length > 0 &&
+      configs?.security_recaptcha_auth?.value === '1')
+  }, [configs])
 
   /**
    * Update credential data
@@ -239,6 +273,8 @@ export const LoginForm = (props) => {
           handleChangeTab={handleChangeTab}
           handleSendVerifyCode={sendVerifyPhoneCode}
           handleCheckPhoneCode={checkVerifyPhoneCode}
+          enableReCaptcha={isReCaptchaEnable}
+          handleReCaptcha={setReCaptcha}
         />
       )}
     </>

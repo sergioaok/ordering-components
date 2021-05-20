@@ -82,6 +82,7 @@ import { FloatingButton } from './components/FloatingButton'
 import { ResetPassword } from './components/ResetPassword'
 import { Analytics } from './components/Analitycs'
 import { AppleLogin } from './components/AppleLogin'
+import { ReCaptcha } from './components/ReCaptcha'
 import { CODES } from './constants/code-numbers'
 
 export {
@@ -159,6 +160,7 @@ export {
   FloatingButton,
   ResetPassword,
   Analytics,
+  ReCaptcha,
   // Contexts
   ConfigContext,
   ConfigProvider,
