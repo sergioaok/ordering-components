@@ -270,9 +270,11 @@ export const UtilsProviders = ({ children }) => {
     }
   }, [languageState])
   return (
-    <UtilsContext.Provider value={[functions]}>
-      {children}
-    </UtilsContext.Provider>
+    <>
+      <UtilsContext.Provider value={[functions]}>
+        {children}
+      </UtilsContext.Provider>
+    </>
   )
 }
 

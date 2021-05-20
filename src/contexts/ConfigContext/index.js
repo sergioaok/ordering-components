@@ -138,9 +138,11 @@ export const ConfigProvider = ({ children }) => {
   }, [languageState])
 
   return (
-    <ConfigContext.Provider value={[state, functions]}>
-      {children}
-    </ConfigContext.Provider>
+    <>
+      <ConfigContext.Provider value={[state, functions]}>
+        {children}
+      </ConfigContext.Provider>
+    </>
   )
 }
 
