@@ -13,9 +13,9 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _dayjs = _interopRequireDefault(require("dayjs"));
 
-var _isSameOrAfter = _interopRequireDefault(require("dayjs/plugin/isSameOrAfter"));
-
 var _utc = _interopRequireDefault(require("dayjs/plugin/utc"));
+
+var _isSameOrAfter = _interopRequireDefault(require("dayjs/plugin/isSameOrAfter"));
 
 var _OrderContext = require("../../contexts/OrderContext");
 

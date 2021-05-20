@@ -1570,7 +1570,7 @@ var OrderProvider = function OrderProvider(_ref) {
     setConfirm: setConfirm
   };
   var copyState = JSON.parse(JSON.stringify(state));
-  return /*#__PURE__*/_react.default.createElement(OrderContext.Provider, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(OrderContext.Provider, {
     value: [copyState, functions]
   }, Alert && /*#__PURE__*/_react.default.createElement(Alert, {
     open: alert.show,
@@ -1586,7 +1586,7 @@ var OrderProvider = function OrderProvider(_ref) {
       });
     },
     content: alert.content
-  }), children);
+  }), children));
 };
 /**
  * Hook to get and update order state

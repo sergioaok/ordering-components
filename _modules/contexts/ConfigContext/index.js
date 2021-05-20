@@ -239,9 +239,9 @@ var ConfigProvider = function ConfigProvider(_ref) {
       refreshConfigs();
     }
   }, [languageState]);
-  return /*#__PURE__*/_react.default.createElement(ConfigContext.Provider, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(ConfigContext.Provider, {
     value: [state, functions]
-  }, children);
+  }, children));
 };
 /**
  * Hook to get and update configs state

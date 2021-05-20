@@ -324,9 +324,9 @@ var UtilsProviders = function UtilsProviders(_ref) {
       refreshLocalObject();
     }
   }, [languageState]);
-  return /*#__PURE__*/_react.default.createElement(UtilsContext.Provider, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(UtilsContext.Provider, {
     value: [functions]
-  }, children);
+  }, children));
 };
 /**
  * Hook to get utils functions
