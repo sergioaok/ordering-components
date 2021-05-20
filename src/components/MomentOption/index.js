@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
-import dayjs from 'dayjs'
+const dayjs = lazy(() => import('dayjs'))
+const utc = lazy(() => import('dayjs/plugin/utc'))
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
-import utc from 'dayjs/plugin/utc'
 import { useOrder } from '../../contexts/OrderContext'
 dayjs.extend(isSameOrAfter)
 dayjs.extend(utc)
@@ -217,7 +217,7 @@ export const MomentOption = (props) => {
   }, [maxDate, minDate])
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       {UIComponent && (
         <UIComponent
           {...props}
@@ -233,7 +233,7 @@ export const MomentOption = (props) => {
           handleAsap={handleAsap}
         />
       )}
-    </>
+    </Suspense>
   )
 }
 

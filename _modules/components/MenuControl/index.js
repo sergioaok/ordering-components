@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -11,13 +9,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -38,6 +32,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var dayjs = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs'));
+  });
+});
 
 var MenuControl = function MenuControl(props) {
   var _menuSelected$schedul;
@@ -101,7 +105,7 @@ var MenuControl = function MenuControl(props) {
    */
 
   var isDisabledDay = function isDisabledDay(date) {
-    var day = (0, _dayjs.default)(date, 'YYYY-MM-DD').day();
+    var day = dayjs(date, 'YYYY-MM-DD').day();
     return disableDays.every(function (number) {
       return number !== day;
     });
@@ -115,14 +119,14 @@ var MenuControl = function MenuControl(props) {
   var onDateSelected = function onDateSelected(date) {
     var _menuSelected$schedul2;
 
-    var day = (0, _dayjs.default)(date, 'YYYY-MM-DD').day();
+    var day = dayjs(date, 'YYYY-MM-DD').day();
     var lapses = menuSelected === null || menuSelected === void 0 ? void 0 : (_menuSelected$schedul2 = menuSelected.schedule[day]) === null || _menuSelected$schedul2 === void 0 ? void 0 : _menuSelected$schedul2.lapses;
     setScheduleSelected(_objectSpread(_objectSpread({}, scheduleSelected), {}, {
       lapses: lapses
     }));
     setStartDate(date);
-    setDateSelected((0, _dayjs.default)(date).format('YYYY-MM-DD HH:mm'));
-    props.handlerSelectDate((0, _dayjs.default)(date).format('YYYY-MM-DD HH:mm'));
+    setDateSelected(dayjs(date).format('YYYY-MM-DD HH:mm'));
+    props.handlerSelectDate(dayjs(date).format('YYYY-MM-DD HH:mm'));
   };
   /**
    * Send to parent component Menu info and date selected
@@ -149,7 +153,7 @@ var MenuControl = function MenuControl(props) {
     var _menu$schedule$today;
 
     setMenuSelected(menu);
-    var today = (0, _dayjs.default)().day();
+    var today = dayjs().day();
     return {
       lapses: menu === null || menu === void 0 ? void 0 : (_menu$schedule$today = menu.schedule[today]) === null || _menu$schedule$today === void 0 ? void 0 : _menu$schedule$today.lapses,
       menuId: menu.id
@@ -163,16 +167,16 @@ var MenuControl = function MenuControl(props) {
   var generateDatesList = function generateDatesList() {
     var list = [];
 
-    var _start = (0, _dayjs.default)().format('YYYY-MM-DD');
+    var _start = dayjs().format('YYYY-MM-DD');
 
-    var _end = (0, _dayjs.default)().day(30).format('YYYY-MM-DD');
+    var _end = dayjs().day(30).format('YYYY-MM-DD');
 
-    var diff = (0, _dayjs.default)(_end, 'YYYY-MM-DD HH:mm').diff((0, _dayjs.default)(_start, 'YYYY-MM-DD HH:mm'), 'days');
+    var diff = dayjs(_end, 'YYYY-MM-DD HH:mm').diff(dayjs(_start, 'YYYY-MM-DD HH:mm'), 'days');
 
     for (var i = 0; i <= diff; i++) {
       list.push({
         key: "".concat(i),
-        date: (0, _dayjs.default)(_start).add(i, 'd').format('YYYY-MM-DD')
+        date: dayjs(_start).add(i, 'd').format('YYYY-MM-DD')
       });
     }
 
@@ -192,12 +196,12 @@ var MenuControl = function MenuControl(props) {
 
       var start = "".concat((_lapses$i = lapses[i]) === null || _lapses$i === void 0 ? void 0 : (_lapses$i$open = _lapses$i.open) === null || _lapses$i$open === void 0 ? void 0 : _lapses$i$open.hour, ":").concat((_lapses$i2 = lapses[i]) === null || _lapses$i2 === void 0 ? void 0 : (_lapses$i2$open = _lapses$i2.open) === null || _lapses$i2$open === void 0 ? void 0 : _lapses$i2$open.minute);
       var end = "".concat((_lapses$i3 = lapses[i]) === null || _lapses$i3 === void 0 ? void 0 : (_lapses$i3$close = _lapses$i3.close) === null || _lapses$i3$close === void 0 ? void 0 : _lapses$i3$close.hour, ":").concat((_lapses$i4 = lapses[i]) === null || _lapses$i4 === void 0 ? void 0 : (_lapses$i4$close = _lapses$i4.close) === null || _lapses$i4$close === void 0 ? void 0 : _lapses$i4$close.minute);
-      var diff = (0, _dayjs.default)(end, 'HH:mm').diff((0, _dayjs.default)(start, 'HH:mm'), 'hour', true);
+      var diff = dayjs(end, 'HH:mm').diff(dayjs(start, 'HH:mm'), 'hour', true);
 
       while (diff > 0) {
         var day = start;
-        timesList.push((0, _dayjs.default)(day, 'HH:mm').toDate());
-        start = (0, _dayjs.default)(day, 'HH:mm').add(15, 'minutes');
+        timesList.push(dayjs(day, 'HH:mm').toDate());
+        start = dayjs(day, 'HH:mm').add(15, 'minutes');
         diff = diff - 0.25;
       }
     }
@@ -211,7 +215,7 @@ var MenuControl = function MenuControl(props) {
 
   var futureDaysToShow = function futureDaysToShow() {
     var futureDays = maxPreoderDays;
-    var today = (0, _dayjs.default)().toDate();
+    var today = dayjs().toDate();
     var datesToShow = [];
     var isDisabledDays = disableDays.every(function (d) {
       return d === false;
@@ -220,24 +224,24 @@ var MenuControl = function MenuControl(props) {
     if (disableDays.length && !isDisabledDays) {
       while (futureDays > 0) {
         var date = today;
-        var day = (0, _dayjs.default)(today).day();
+        var day = dayjs(today).day();
 
         if (disableDays[day] === false) {
-          datesToShow.push((0, _dayjs.default)(date).toDate());
+          datesToShow.push(dayjs(date).toDate());
           futureDays--;
         }
 
-        today = (0, _dayjs.default)((0, _dayjs.default)(today).add(1, 'd')).toDate();
+        today = dayjs(dayjs(today).add(1, 'd')).toDate();
       }
     }
 
     if (disableDays.length && isDisabledDays) {
       for (var i = 1; i <= maxPreoderDays; i++) {
-        datesToShow.push((0, _dayjs.default)((0, _dayjs.default)(today).add(i, 'd')).toDate());
+        datesToShow.push(dayjs(dayjs(today).add(i, 'd')).toDate());
       }
     }
 
-    datesToShow.unshift((0, _dayjs.default)().toDate());
+    datesToShow.unshift(dayjs().toDate());
     return datesToShow;
   };
 
@@ -247,7 +251,9 @@ var MenuControl = function MenuControl(props) {
   (0, _react.useEffect)(function () {
     generateDatesList();
   }, []);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
+  return /*#__PURE__*/_react.default.createElement(_react.Suspense, {
+    fallback: /*#__PURE__*/_react.default.createElement("div", null, "Loading...")
+  }, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
     futureDaysToShow: futureDaysToShow,
     menuLapsesList: menuLapsesList,
     disableDays: disableDays,

@@ -1,12 +1,12 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, lazy, Suspense } from 'react'
 import { useSession } from '../SessionContext'
 import { useApi } from '../ApiContext'
 import { useWebsocket } from '../WebsocketContext'
 import { useLanguage } from '../LanguageContext'
 import { useEvent } from '../EventContext'
 import { useConfig } from '../ConfigContext'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
+const dayjs = lazy(() => import('dayjs'))
+const utc = lazy(() => import('dayjs/plugin/utc'))
 
 dayjs.extend(utc)
 
@@ -702,20 +702,22 @@ export const OrderProvider = ({ Alert, children, strategy }) => {
   const copyState = JSON.parse(JSON.stringify(state))
 
   return (
-    <OrderContext.Provider value={[copyState, functions]}>
-      {
-        Alert && (
-          <Alert
-            open={alert.show}
-            title={t('ERROR', 'Error')}
-            onAccept={() => setAlert({ show: false })}
-            onClose={() => setAlert({ show: false })}
-            content={alert.content}
-          />
-        )
-      }
-      {children}
-    </OrderContext.Provider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <OrderContext.Provider value={[copyState, functions]}>
+        {
+          Alert && (
+            <Alert
+              open={alert.show}
+              title={t('ERROR', 'Error')}
+              onAccept={() => setAlert({ show: false })}
+              onClose={() => setAlert({ show: false })}
+              content={alert.content}
+            />
+          )
+        }
+        {children}
+      </OrderContext.Provider>
+    </Suspense>
   )
 }
 

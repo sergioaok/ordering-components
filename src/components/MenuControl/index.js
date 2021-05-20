@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
-import dayjs from 'dayjs'
+const dayjs = lazy(() => import('dayjs'))
 
 export const MenuControl = (props) => {
   const {
@@ -166,7 +166,7 @@ export const MenuControl = (props) => {
   }, [])
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       {UIComponent && (
         <UIComponent
           {...props}
@@ -183,7 +183,7 @@ export const MenuControl = (props) => {
           dateSelected={dateSelected}
         />
       )}
-    </>
+    </Suspense>
   )
 }
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState, lazy, Suspense } from 'react'
 import PropTypes, { string } from 'prop-types'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
+const dayjs = lazy(() => import('dayjs'))
+const utc = lazy(() => import('dayjs/plugin/utc'))
 import { useApi } from '../../contexts/ApiContext'
 import { useOrder } from '../../contexts/OrderContext'
 
@@ -372,7 +372,7 @@ export const BusinessList = (props) => {
   }
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       {
         UIComponent && (
           <UIComponent
@@ -394,7 +394,7 @@ export const BusinessList = (props) => {
           />
         )
       }
-    </>
+    </Suspense>
   )
 }
 

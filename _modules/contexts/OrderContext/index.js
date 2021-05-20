@@ -21,14 +21,6 @@ var _EventContext = require("../EventContext");
 
 var _ConfigContext = require("../ConfigContext");
 
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
-var _utc = _interopRequireDefault(require("dayjs/plugin/utc"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -59,12 +51,25 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-_dayjs.default.extend(_utc.default);
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var dayjs = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs'));
+  });
+});
+var utc = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs/plugin/utc'));
+  });
+});
+dayjs.extend(utc);
 /**
  * Create OrderContext
  * This context will manage the current order with options internally and provide an easy interface
  */
-
 
 var OrderContext = /*#__PURE__*/(0, _react.createContext)();
 /**
@@ -276,7 +281,7 @@ var OrderProvider = function OrderProvider(_ref) {
               }
 
               if (localOptions.moment) {
-                _options2.moment = _dayjs.default.utc(localOptions.moment, 'YYYY-MM-DD HH:mm:ss').unix();
+                _options2.moment = dayjs.utc(localOptions.moment, 'YYYY-MM-DD HH:mm:ss').unix();
               }
 
               if (localOptions === null || localOptions === void 0 ? void 0 : localOptions.address_id) {
@@ -510,7 +515,7 @@ var OrderProvider = function OrderProvider(_ref) {
           switch (_context4.prev = _context4.next) {
             case 0:
               momentUnix = moment ? moment.getTime() / 1000 : null;
-              momentFormatted = momentUnix ? _dayjs.default.unix(momentUnix).utc().format('YYYY-MM-DD HH:mm:ss') : null;
+              momentFormatted = momentUnix ? dayjs.unix(momentUnix).utc().format('YYYY-MM-DD HH:mm:ss') : null;
               options = _objectSpread(_objectSpread({}, state.options), {}, {
                 moment: momentFormatted
               });
@@ -1570,7 +1575,9 @@ var OrderProvider = function OrderProvider(_ref) {
     setConfirm: setConfirm
   };
   var copyState = JSON.parse(JSON.stringify(state));
-  return /*#__PURE__*/_react.default.createElement(OrderContext.Provider, {
+  return /*#__PURE__*/_react.default.createElement(_react.Suspense, {
+    fallback: /*#__PURE__*/_react.default.createElement("div", null, "Loading...")
+  }, /*#__PURE__*/_react.default.createElement(OrderContext.Provider, {
     value: [copyState, functions]
   }, Alert && /*#__PURE__*/_react.default.createElement(Alert, {
     open: alert.show,
@@ -1586,7 +1593,7 @@ var OrderProvider = function OrderProvider(_ref) {
       });
     },
     content: alert.content
-  }), children);
+  }), children));
 };
 /**
  * Hook to get and update order state

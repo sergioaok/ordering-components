@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -13,19 +11,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
-var _utc = _interopRequireDefault(require("dayjs/plugin/utc"));
-
 var _OrderContext = require("../../contexts/OrderContext");
 
 var _LanguageContext = require("../../contexts/LanguageContext");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -59,7 +51,21 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-_dayjs.default.extend(_utc.default);
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var dayjs = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs'));
+  });
+});
+var utc = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs/plugin/utc'));
+  });
+});
+dayjs.extend(utc);
 
 var BusinessAndProductList = function BusinessAndProductList(props) {
   var _businessState$busine12, _orderState$options26, _orderState$options27, _orderState$options28, _orderState$options29;
@@ -202,7 +208,7 @@ var BusinessAndProductList = function BusinessAndProductList(props) {
   };
 
   var isValidMoment = function isValidMoment(date, format) {
-    return _dayjs.default.utc(date, format).format(format) === date;
+    return dayjs.utc(date, format).format(format) === date;
   };
 
   var isFeaturedSearch = function isFeaturedSearch(product) {
@@ -309,7 +315,7 @@ var BusinessAndProductList = function BusinessAndProductList(props) {
               };
 
               if (((_orderState$options2 = orderState.options) === null || _orderState$options2 === void 0 ? void 0 : _orderState$options2.moment) && isValidMoment((_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : _orderState$options3.moment, 'YYYY-MM-DD HH:mm:ss')) {
-                moment = _dayjs.default.utc((_orderState$options4 = orderState.options) === null || _orderState$options4 === void 0 ? void 0 : _orderState$options4.moment, 'YYYY-MM-DD HH:mm:ss').local().unix();
+                moment = dayjs.utc((_orderState$options4 = orderState.options) === null || _orderState$options4 === void 0 ? void 0 : _orderState$options4.moment, 'YYYY-MM-DD HH:mm:ss').local().unix();
                 parameters.timestamp = moment;
               }
 
@@ -446,7 +452,7 @@ var BusinessAndProductList = function BusinessAndProductList(props) {
               };
 
               if (((_orderState$options7 = orderState.options) === null || _orderState$options7 === void 0 ? void 0 : _orderState$options7.moment) && isValidMoment((_orderState$options8 = orderState.options) === null || _orderState$options8 === void 0 ? void 0 : _orderState$options8.moment, 'YYYY-MM-DD HH:mm:ss')) {
-                moment = _dayjs.default.utc((_orderState$options9 = orderState.options) === null || _orderState$options9 === void 0 ? void 0 : _orderState$options9.moment, 'YYYY-MM-DD HH:mm:ss').local().unix();
+                moment = dayjs.utc((_orderState$options9 = orderState.options) === null || _orderState$options9 === void 0 ? void 0 : _orderState$options9.moment, 'YYYY-MM-DD HH:mm:ss').local().unix();
                 parameters.timestamp = moment;
               }
 
@@ -514,7 +520,7 @@ var BusinessAndProductList = function BusinessAndProductList(props) {
               };
 
               if (((_orderState$options19 = orderState.options) === null || _orderState$options19 === void 0 ? void 0 : _orderState$options19.moment) && isValidMoment((_orderState$options20 = orderState.options) === null || _orderState$options20 === void 0 ? void 0 : _orderState$options20.moment, 'YYYY-MM-DD HH:mm:ss')) {
-                moment = _dayjs.default.utc((_orderState$options21 = orderState.options) === null || _orderState$options21 === void 0 ? void 0 : _orderState$options21.moment, 'YYYY-MM-DD HH:mm:ss').local().unix();
+                moment = dayjs.utc((_orderState$options21 = orderState.options) === null || _orderState$options21 === void 0 ? void 0 : _orderState$options21.moment, 'YYYY-MM-DD HH:mm:ss').local().unix();
                 parameters.timestamp = moment;
               }
 
@@ -632,7 +638,9 @@ var BusinessAndProductList = function BusinessAndProductList(props) {
       request && request.cancel && request.cancel();
     };
   }, [requestsState.products]);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
+  return /*#__PURE__*/_react.default.createElement(_react.Suspense, {
+    fallback: /*#__PURE__*/_react.default.createElement("div", null, "Loading...")
+  }, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
     errors: errors,
     categorySelected: categorySelected,
     searchValue: searchValue,

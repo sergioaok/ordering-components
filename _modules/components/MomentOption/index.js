@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -11,19 +9,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
 var _isSameOrAfter = _interopRequireDefault(require("dayjs/plugin/isSameOrAfter"));
-
-var _utc = _interopRequireDefault(require("dayjs/plugin/utc"));
 
 var _OrderContext = require("../../contexts/OrderContext");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -39,13 +31,25 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-_dayjs.default.extend(_isSameOrAfter.default);
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
-_dayjs.default.extend(_utc.default);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var dayjs = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs'));
+  });
+});
+var utc = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs/plugin/utc'));
+  });
+});
+dayjs.extend(_isSameOrAfter.default);
+dayjs.extend(utc);
 /**
  * Component to manage moment option behavior without UI component
  */
-
 
 var MomentOption = function MomentOption(props) {
   var _orderStatus$options, _orderStatus$options4;
@@ -70,7 +74,7 @@ var MomentOption = function MomentOption(props) {
   var validDate = function validDate(date) {
     if (!date) return;
 
-    var _date = (0, _dayjs.default)(date, 'YYYY-MM-DD HH:mm').isSameOrAfter((0, _dayjs.default)(), 'day') ? (0, _dayjs.default)(date).format('YYYY-MM-DD HH:mm') : (0, _dayjs.default)().format('YYYY-MM-DD HH:mm');
+    var _date = dayjs(date, 'YYYY-MM-DD HH:mm').isSameOrAfter(dayjs(), 'day') ? dayjs(date).format('YYYY-MM-DD HH:mm') : dayjs().format('YYYY-MM-DD HH:mm');
 
     return _date;
   };
@@ -82,8 +86,8 @@ var MomentOption = function MomentOption(props) {
 
 
   var calculateDiffDay = function calculateDiffDay(start, end) {
-    var endVal = end !== null && end !== void 0 ? end : (0, _dayjs.default)();
-    var days = (0, _dayjs.default)(start).diff((0, _dayjs.default)(endVal), 'day');
+    var endVal = end !== null && end !== void 0 ? end : dayjs();
+    var days = dayjs(start).diff(dayjs(endVal), 'day');
     return days;
   };
   /**
@@ -93,7 +97,7 @@ var MomentOption = function MomentOption(props) {
 
   var _currentDate = useOrderContext ? (_orderStatus$options = orderStatus.options) === null || _orderStatus$options === void 0 ? void 0 : _orderStatus$options.moment : currentDate;
 
-  var _useState = (0, _react.useState)(_currentDate ? (0, _dayjs.default)(validDate(_currentDate)).format('YYYY-MM-DD HH:mm') : null),
+  var _useState = (0, _react.useState)(_currentDate ? dayjs(validDate(_currentDate)).format('YYYY-MM-DD HH:mm') : null),
       _useState2 = _slicedToArray(_useState, 2),
       scheduleSelected = _useState2[0],
       setScheduleSelected = _useState2[1];
@@ -121,7 +125,7 @@ var MomentOption = function MomentOption(props) {
       datesList = _useState8[0],
       setDatesList = _useState8[1];
 
-  var _useState9 = (0, _react.useState)((0, _dayjs.default)(validDate(_currentDate)).format('YYYY-MM-DD')),
+  var _useState9 = (0, _react.useState)(dayjs(validDate(_currentDate)).format('YYYY-MM-DD')),
       _useState10 = _slicedToArray(_useState9, 2),
       dateSelected = _useState10[0],
       setDateSelected = _useState10[1];
@@ -141,7 +145,7 @@ var MomentOption = function MomentOption(props) {
   var handleChangeTime = function handleChangeTime(time) {
     if (!time || time === timeSelected) return;
 
-    var _moment = (0, _dayjs.default)("".concat(dateSelected, " ").concat(time), 'YYYY-MM-DD HH:mm').toDate();
+    var _moment = dayjs("".concat(dateSelected, " ").concat(time), 'YYYY-MM-DD HH:mm').toDate();
 
     setTimeSelected(time);
     setIsAsap(false);
@@ -171,14 +175,14 @@ var MomentOption = function MomentOption(props) {
       if ((_orderStatus$options2 = orderStatus.options) === null || _orderStatus$options2 === void 0 ? void 0 : _orderStatus$options2.moment) {
         var _orderStatus$options3;
 
-        var _currentDate2 = _dayjs.default.utc(validDate((_orderStatus$options3 = orderStatus.options) === null || _orderStatus$options3 === void 0 ? void 0 : _orderStatus$options3.moment)).local();
+        var _currentDate2 = dayjs.utc(validDate((_orderStatus$options3 = orderStatus.options) === null || _orderStatus$options3 === void 0 ? void 0 : _orderStatus$options3.moment)).local();
 
         setScheduleSelected(_currentDate2.format('YYYY-MM-DD HH:mm'));
         setDateSelected(_currentDate2.format('YYYY-MM-DD'));
         setTimeSelected(_currentDate2.format('HH:mm'));
         isAsap && setIsAsap(false);
       } else {
-        dateSelected !== (0, _dayjs.default)().format('YYYY-MM-DD') && setDateSelected((0, _dayjs.default)().format('YYYY-MM-DD'));
+        dateSelected !== dayjs().format('YYYY-MM-DD') && setDateSelected(dayjs().format('YYYY-MM-DD'));
         timeSelected !== null && setTimeSelected(null);
         scheduleSelected !== null && setScheduleSelected(null);
         !isAsap && setIsAsap(true);
@@ -193,8 +197,8 @@ var MomentOption = function MomentOption(props) {
       return;
     }
 
-    var selected = (0, _dayjs.default)(scheduleSelected, 'YYYY-MM-DD HH:mm');
-    var now = (0, _dayjs.default)();
+    var selected = dayjs(scheduleSelected, 'YYYY-MM-DD HH:mm');
+    var now = dayjs();
     var secondsDiff = selected.diff(now, 'seconds');
     var checkTime;
 
@@ -227,8 +231,8 @@ var MomentOption = function MomentOption(props) {
 
   var generateHourList = function generateHourList() {
     var hoursAvailable = [];
-    var isToday = dateSelected === (0, _dayjs.default)().format('YYYY-MM-DD');
-    var isLastDate = dateSelected === (0, _dayjs.default)(maxDate).format('YYYY-MM-DD');
+    var isToday = dateSelected === dayjs().format('YYYY-MM-DD');
+    var isLastDate = dateSelected === dayjs(maxDate).format('YYYY-MM-DD');
     var now = new Date();
 
     for (var hour = 0; hour < 24; hour++) {
@@ -278,7 +282,7 @@ var MomentOption = function MomentOption(props) {
     var diff = parseInt(calculateDiffDay(validDate(maxDate)), validDate(minDate));
 
     for (var i = 0; i < diff + 1; i++) {
-      datesList.push((0, _dayjs.default)(validDate(minDate)).add(i, 'd').format('YYYY-MM-DD'));
+      datesList.push(dayjs(validDate(minDate)).add(i, 'd').format('YYYY-MM-DD'));
     }
 
     setDatesList(datesList);
@@ -290,7 +294,7 @@ var MomentOption = function MomentOption(props) {
   }, [dateSelected]);
   (0, _react.useEffect)(function () {
     var interval = setInterval(function () {
-      var diff = (0, _dayjs.default)(dateSelected).diff((0, _dayjs.default)(currentDate), 'day');
+      var diff = dayjs(dateSelected).diff(dayjs(currentDate), 'day');
 
       if (diff === 0) {
         generateHourList();
@@ -303,7 +307,9 @@ var MomentOption = function MomentOption(props) {
   (0, _react.useEffect)(function () {
     generateDatesList();
   }, [maxDate, minDate]);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
+  return /*#__PURE__*/_react.default.createElement(_react.Suspense, {
+    fallback: /*#__PURE__*/_react.default.createElement("div", null, "Loading...")
+  }, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
     isAsap: isAsap,
     minDate: validDate(minDate),
     maxDate: validDate(maxDate),

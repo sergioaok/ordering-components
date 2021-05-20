@@ -1,7 +1,5 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -13,19 +11,13 @@ var _ConfigContext = require("../ConfigContext");
 
 var _LanguageContext = require("../LanguageContext");
 
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
-var _utc = _interopRequireDefault(require("dayjs/plugin/utc"));
-
 var _relativeTime = _interopRequireDefault(require("dayjs/plugin/relativeTime"));
 
 var _updateLocale = _interopRequireDefault(require("dayjs/plugin/updateLocale"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -39,16 +31,27 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-_dayjs.default.extend(_utc.default);
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
-_dayjs.default.extend(_relativeTime.default);
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-_dayjs.default.extend(_updateLocale.default);
+var dayjs = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs'));
+  });
+});
+var utc = /*#__PURE__*/(0, _react.lazy)(function () {
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(require('dayjs/plugin/utc'));
+  });
+});
+dayjs.extend(utc);
+dayjs.extend(_relativeTime.default);
+dayjs.extend(_updateLocale.default);
 /**
  * Create ConfigContext
  * This context will manage the current configs internally and provide an easy interface
  */
-
 
 var UtilsContext = /*#__PURE__*/(0, _react.createContext)();
 /**
@@ -118,10 +121,8 @@ var UtilsProviders = function UtilsProviders(_ref) {
         return hour > 12 ? t('PM', 'PM') : t('AM', 'AM');
       }
     };
-
-    _dayjs.default.locale('auto', localeObject);
-
-    _dayjs.default.updateLocale('auto', localeObject);
+    dayjs.locale('auto', localeObject);
+    dayjs.updateLocale('auto', localeObject);
   };
 
   var parsePrice = function parsePrice(value) {
@@ -182,11 +183,11 @@ var UtilsProviders = function UtilsProviders(_ref) {
       utc: typeof (options === null || options === void 0 ? void 0 : options.utc) === 'boolean' ? options === null || options === void 0 ? void 0 : options.utc : true
     };
 
-    if (!(0, _dayjs.default)(date, formatDate.inputFormat).isValid()) {
+    if (!dayjs(date, formatDate.inputFormat).isValid()) {
       return t('INVALID_FORMAT', 'invalid format');
     }
 
-    var _date = formatDate.utc ? _dayjs.default.utc(date, formatDate.inputFormat).local() : (0, _dayjs.default)(date, formatDate.inputFormat);
+    var _date = formatDate.utc ? dayjs.utc(date, formatDate.inputFormat).local() : dayjs(date, formatDate.inputFormat);
 
     return _date.format(formatDate.outputFormat);
   };
@@ -205,11 +206,11 @@ var UtilsProviders = function UtilsProviders(_ref) {
       utc: typeof (options === null || options === void 0 ? void 0 : options.utc) === 'boolean' ? options === null || options === void 0 ? void 0 : options.utc : true
     };
 
-    if (!(0, _dayjs.default)(time, formatTime.inputFormat).isValid()) {
+    if (!dayjs(time, formatTime.inputFormat).isValid()) {
       return t('INVALID_FORMAT', 'invalid format');
     }
 
-    var _date = formatTime.utc ? _dayjs.default.utc(time, formatTime.inputFormat).local() : (0, _dayjs.default)(time, formatTime.inputFormat);
+    var _date = formatTime.utc ? dayjs.utc(time, formatTime.inputFormat).local() : dayjs(time, formatTime.inputFormat);
 
     return _date.format(formatTime.outputFormat);
   };
@@ -271,11 +272,11 @@ var UtilsProviders = function UtilsProviders(_ref) {
       utc: typeof (options === null || options === void 0 ? void 0 : options.utc) === 'boolean' ? options === null || options === void 0 ? void 0 : options.utc : true
     };
 
-    if (!(0, _dayjs.default)(dateTime, dateOptions.inputFormat).isValid()) {
+    if (!dayjs(dateTime, dateOptions.inputFormat).isValid()) {
       return t('INVALID_FORMAT', 'invalid format');
     }
 
-    var _date = dateOptions.utc ? _dayjs.default.utc(dateTime, dateOptions.inputFormat).local() : (0, _dayjs.default)(dateTime, dateOptions.inputFormat);
+    var _date = dateOptions.utc ? dayjs.utc(dateTime, dateOptions.inputFormat).local() : dayjs(dateTime, dateOptions.inputFormat);
 
     return _date.fromNow();
   };
@@ -287,11 +288,11 @@ var UtilsProviders = function UtilsProviders(_ref) {
       utc: typeof (options === null || options === void 0 ? void 0 : options.utc) === 'boolean' ? options === null || options === void 0 ? void 0 : options.utc : true
     };
 
-    if (!(0, _dayjs.default)(dateTime, dateOptions.inputFormat).isValid()) {
+    if (!dayjs(dateTime, dateOptions.inputFormat).isValid()) {
       return t('INVALID_FORMAT', 'invalid format');
     }
 
-    var _date = dateOptions.utc ? _dayjs.default.utc(dateTime, dateOptions.inputFormat).local() : (0, _dayjs.default)(dateTime, dateOptions.inputFormat);
+    var _date = dateOptions.utc ? dayjs.utc(dateTime, dateOptions.inputFormat).local() : dayjs(dateTime, dateOptions.inputFormat);
 
     return _date.toNow();
   };
@@ -324,9 +325,11 @@ var UtilsProviders = function UtilsProviders(_ref) {
       refreshLocalObject();
     }
   }, [languageState]);
-  return /*#__PURE__*/_react.default.createElement(UtilsContext.Provider, {
+  return /*#__PURE__*/_react.default.createElement(_react.Suspense, {
+    fallback: /*#__PURE__*/_react.default.createElement("div", null, "Loading...")
+  }, /*#__PURE__*/_react.default.createElement(UtilsContext.Provider, {
     value: [functions]
-  }, children);
+  }, children));
 };
 /**
  * Hook to get utils functions

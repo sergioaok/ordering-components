@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useEffect } from 'react'
+import React, { createContext, useContext, useEffect, lazy, Suspense } from 'react'
 import { useConfig } from '../ConfigContext'
 import { useLanguage } from '../LanguageContext'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
+const dayjs = lazy(() => import('dayjs'))
+const utc = lazy(() => import('dayjs/plugin/utc'))
 import relativeTime from 'dayjs/plugin/relativeTime'
 import updateLocale from 'dayjs/plugin/updateLocale'
 
@@ -270,9 +270,11 @@ export const UtilsProviders = ({ children }) => {
     }
   }, [languageState])
   return (
-    <UtilsContext.Provider value={[functions]}>
-      {children}
-    </UtilsContext.Provider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <UtilsContext.Provider value={[functions]}>
+        {children}
+      </UtilsContext.Provider>
+    </Suspense>
   )
 }
 

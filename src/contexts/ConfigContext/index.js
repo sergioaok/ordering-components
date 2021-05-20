@@ -1,8 +1,8 @@
-import React, { createContext, useState, useContext, useEffect } from 'react'
+import React, { createContext, useState, useContext, useEffect, lazy, Suspense } from 'react'
 import { useApi } from '../ApiContext'
 import { useLanguage } from '../LanguageContext'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
+const dayjs = lazy(() => import('dayjs'))
+const utc = lazy(() => import('dayjs/plugin/utc'))
 
 dayjs.extend(utc)
 
@@ -138,9 +138,11 @@ export const ConfigProvider = ({ children }) => {
   }, [languageState])
 
   return (
-    <ConfigContext.Provider value={[state, functions]}>
-      {children}
-    </ConfigContext.Provider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <ConfigContext.Provider value={[state, functions]}>
+        {children}
+      </ConfigContext.Provider>
+    </Suspense>
   )
 }
 
