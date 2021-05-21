@@ -20,6 +20,7 @@ import { DriverTips } from './components/DriverTips'
 import { ExamineClick } from './components/ExamineClick'
 import { FacebookLoginButton } from './components/FacebookLoginButton'
 import { ForgotPasswordForm } from './components/ForgotPasswordForm'
+import { GoogleLoginButton } from './components/GoogleLoginButton'
 import { GoogleAutocompleteInput } from './components/GoogleAutocompleteInput'
 import { GoogleMaps, GoogleMapsMap } from './components/GoogleMaps'
 import { GpsButton, GoogleGpsButton } from './components/GpsButton'
@@ -107,6 +108,7 @@ export {
   DriverTips,
   ExamineClick,
   FacebookLoginButton,
+  GoogleLoginButton,
   ForgotPasswordForm,
   GoogleAutocompleteInput,
   GoogleMaps,
