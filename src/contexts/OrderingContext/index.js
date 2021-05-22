@@ -53,3 +53,5 @@ export const OrderingProvider = ({ Alert, settings, children }) => {
     </OrderingContext.Provider>
   )
 }
+
+export default OrderingProvider
