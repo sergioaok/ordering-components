@@ -308,7 +308,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 loading: false
               });
 
-              if (response.status === 200 && !response.content.error) {
+              if (!response.content.error) {
                 if (handleSuccessGoogleLogin) {
                   handleSuccessGoogleLogin(response.content.result);
                 }
@@ -326,7 +326,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
             case 20:
               _context2.prev = 20;
               _context2.t0 = _context2["catch"](10);
-              console.log('catch err');
               setFormState({
                 result: {
                   error: true,
@@ -334,6 +333,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 },
                 loading: false
               });
+              signOut();
 
             case 24:
             case "end":
