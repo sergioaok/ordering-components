@@ -9,13 +9,14 @@ export const GoogleLoginButton = (props) => {
     onFailure,
     onRequest,
     responseType,
-    handleSuccessGoogleLogin,
+      handleSuccessGoogleLogin,
     initParams,
     buttonStyle,
     handleGoogleLoginClick
   } = props
 
-  // const [ordering] = useApi()
+  const [ordering] = useApi()
+  const [formState, setFormState] = useState({ loading: false, result: { error: false } })
   const [loaded, setLoaded] = useState(false)
   let wasUnmounted = false
 
@@ -123,6 +124,10 @@ export const GoogleLoginButton = (props) => {
     }
     const basicProfile = res.getBasicProfile()
     const authResponse = res.getAuthResponse()
+    console.log('basicProfile')
+    console.log(basicProfile)
+    console.log('authResponse')
+    console.log(authResponse)
     res.googleId = basicProfile.getId()
     res.tokenObj = authResponse
     res.tokenId = authResponse.id_token
@@ -135,9 +140,38 @@ export const GoogleLoginButton = (props) => {
       givenName: basicProfile.getGivenName(),
       familyName: basicProfile.getFamilyName()
     }
+
+    // testing
+    try {
+      setFormState({ ...formState, loading: true })
+      const response = await ordering.users().authGoogle({ access_token: authResponse?.access_token })
+      console.log('response')
+      console.log(response)
+      setFormState({
+        result: response.content,
+        loading: false
+      })
+      if (!response.content.error) {
+        if (handleSuccessGoogleLogin) {
+          handleSuccessGoogleLogin(response.content.result)
+          onSuccess(response)
+        }
+      } else {
+        // handleFacebookLogout()
+      }
+    } catch (err) {
+      setFormState({
+        result: {
+          error: true,
+          result: err.message
+        },
+        loading: false
+      })
+    }
+
     // const response = await ordering.users().auth(res)
-    handleSuccessGoogleLogin(basicProfile)
-    onSuccess(res)
+    // handleSuccessGoogleLogin(basicProfile)
+    // onSuccess(res)
   }
 
   return (

@@ -15,15 +15,15 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _ApiContext = require("../../contexts/ApiContext");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -54,12 +54,26 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       handleSuccessGoogleLogin = props.handleSuccessGoogleLogin,
       initParams = props.initParams,
       buttonStyle = props.buttonStyle,
-      handleGoogleLoginClick = props.handleGoogleLoginClick; // const [ordering] = useApi()
+      handleGoogleLoginClick = props.handleGoogleLoginClick;
 
-  var _useState = (0, _react.useState)(false),
+  var _useApi = (0, _ApiContext.useApi)(),
+      _useApi2 = _slicedToArray(_useApi, 1),
+      ordering = _useApi2[0];
+
+  var _useState = (0, _react.useState)({
+    loading: false,
+    result: {
+      error: false
+    }
+  }),
       _useState2 = _slicedToArray(_useState, 2),
-      loaded = _useState2[0],
-      setLoaded = _useState2[1];
+      formState = _useState2[0],
+      setFormState = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loaded = _useState4[0],
+      setLoaded = _useState4[1];
 
   var wasUnmounted = false;
   (0, _react.useEffect)(function () {
@@ -186,7 +200,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
   var handleSigninSuccess = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(res) {
-      var basicProfile, authResponse;
+      var basicProfile, authResponse, response;
       return _regenerator.default.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -201,6 +215,10 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
             case 2:
               basicProfile = res.getBasicProfile();
               authResponse = res.getAuthResponse();
+              console.log('basicProfile');
+              console.log(basicProfile);
+              console.log('authResponse');
+              console.log(authResponse);
               res.googleId = basicProfile.getId();
               res.tokenObj = authResponse;
               res.tokenId = authResponse.id_token;
@@ -212,17 +230,54 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 name: basicProfile.getName(),
                 givenName: basicProfile.getGivenName(),
                 familyName: basicProfile.getFamilyName()
-              }; // const response = await ordering.users().auth(res)
+              }; // testing
 
-              handleSuccessGoogleLogin(basicProfile);
-              onSuccess(res);
+              _context2.prev = 13;
+              setFormState(_objectSpread(_objectSpread({}, formState), {}, {
+                loading: true
+              }));
+              _context2.next = 17;
+              return ordering.users().authGoogle({
+                access_token: authResponse === null || authResponse === void 0 ? void 0 : authResponse.access_token
+              });
 
-            case 11:
+            case 17:
+              response = _context2.sent;
+              console.log('response');
+              console.log(response);
+              setFormState({
+                result: response.content,
+                loading: false
+              });
+
+              if (!response.content.error) {
+                if (handleSuccessGoogleLogin) {
+                  handleSuccessGoogleLogin(response.content.result);
+                  onSuccess(response);
+                }
+              } else {// handleFacebookLogout()
+              }
+
+              _context2.next = 27;
+              break;
+
+            case 24:
+              _context2.prev = 24;
+              _context2.t0 = _context2["catch"](13);
+              setFormState({
+                result: {
+                  error: true,
+                  result: _context2.t0.message
+                },
+                loading: false
+              });
+
+            case 27:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2);
+      }, _callee2, null, [[13, 24]]);
     }));
 
     return function handleSigninSuccess(_x2) {
