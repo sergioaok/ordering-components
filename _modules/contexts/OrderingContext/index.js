@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.OrderingProvider = exports.OrderingContext = void 0;
+exports.default = exports.OrderingProvider = exports.OrderingContext = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -78,3 +78,5 @@ var OrderingProvider = function OrderingProvider(_ref) {
 };
 
 exports.OrderingProvider = OrderingProvider;
+var _default = OrderingProvider;
+exports.default = _default;
