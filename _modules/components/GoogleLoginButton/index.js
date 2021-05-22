@@ -308,7 +308,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 loading: false
               });
 
-              if (!response.content.error) {
+              if (response.status === 200 && !response.content.error) {
                 if (handleSuccessGoogleLogin) {
                   handleSuccessGoogleLogin(response.content.result);
                 }
