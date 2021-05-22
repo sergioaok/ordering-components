@@ -79,15 +79,15 @@ export const GoogleLoginButton = (props) => {
         wasUnmounted && setGoogleStatus({ ...googleStatus, loaded: true })
       }
     })
-    window.gapi.load('signin2', () => {
-      if (!wasUnmounted) {
-        window.gapi.signin2.render('my-signin2', {
-          ...buttonStyle,
-          onsuccess: onSuccess,
-          onfailure: onFailure
-        })
-      }
-    })
+    // window.gapi.load('signin2', () => {
+    //   if (!wasUnmounted) {
+    //     window.gapi.signin2.render('my-signin2', {
+    //       ...buttonStyle,
+    //       onsuccess: onSuccess,
+    //       onfailure: onFailure
+    //     })
+    //   }
+    // })
   }
 
   /**
@@ -103,7 +103,6 @@ export const GoogleLoginButton = (props) => {
       if (onRequest) {
         onRequest()
       }
-      console.log(responseType)
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(
           (res) => onSuccess(res),
@@ -174,7 +173,6 @@ export const GoogleLoginButton = (props) => {
     try {
       setFormState({ ...formState, loading: true })
       const response = await ordering.users().authGoogle({ access_token: authResponse?.access_token })
-      console.log(response)
       setFormState({
         result: response.content,
         loading: false

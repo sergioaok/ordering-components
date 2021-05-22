@@ -164,15 +164,15 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
           loaded: true
         }));
       }
-    });
-    window.gapi.load('signin2', function () {
-      if (!wasUnmounted) {
-        window.gapi.signin2.render('my-signin2', _objectSpread(_objectSpread({}, buttonStyle), {}, {
-          onsuccess: onSuccess,
-          onfailure: onFailure
-        }));
-      }
-    });
+    }); // window.gapi.load('signin2', () => {
+    //   if (!wasUnmounted) {
+    //     window.gapi.signin2.render('my-signin2', {
+    //       ...buttonStyle,
+    //       onsuccess: onSuccess,
+    //       onfailure: onFailure
+    //     })
+    //   }
+    // })
   };
   /**
    * handling response of google
@@ -191,8 +191,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       if (onRequest) {
         onRequest();
       }
-
-      console.log(responseType);
 
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(function (res) {
@@ -301,7 +299,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
             case 14:
               response = _context2.sent;
-              console.log(response);
               setFormState({
                 result: response.content,
                 loading: false
@@ -319,11 +316,11 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 signOut();
               }
 
-              _context2.next = 24;
+              _context2.next = 23;
               break;
 
-            case 20:
-              _context2.prev = 20;
+            case 19:
+              _context2.prev = 19;
               _context2.t0 = _context2["catch"](10);
               setFormState({
                 result: {
@@ -334,12 +331,12 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
               });
               signOut();
 
-            case 24:
+            case 23:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[10, 20]]);
+      }, _callee2, null, [[10, 19]]);
     }));
 
     return function handleSigninSuccess(_x2) {
