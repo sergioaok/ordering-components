@@ -235,9 +235,8 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
     }
 
     if (googleStatus.loaded) {
-      var auth = window.gapi.auth2;
-      var GoogleAuth = auth.getAuthInstance();
-      GoogleAuth.signOut.then(auth.disconnect().then(function () {
+      var GoogleAuth = window.gapi.auth2.getAuthInstance();
+      GoogleAuth.signOut().then(GoogleAuth.disconnect().then(function () {
         setFormState({
           loading: false,
           result: {

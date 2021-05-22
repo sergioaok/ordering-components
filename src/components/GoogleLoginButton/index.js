@@ -132,11 +132,10 @@ export const GoogleLoginButton = (props) => {
       e.preventDefault() // to prevent submit if used within form
     }
     if (googleStatus.loaded) {
-      const auth = window.gapi.auth2
-      const GoogleAuth = auth.getAuthInstance()
+      const GoogleAuth = window.gapi.auth2.getAuthInstance()
 
-      GoogleAuth.signOut.then(
-        auth.disconnect().then(() => {
+      GoogleAuth.signOut().then(
+        GoogleAuth.disconnect().then(() => {
           setFormState({ loading: false, result: { error: false } })
           setGoogleStatus({ ...googleStatus, logged: false })
           if (handleSuccessGoogleLogout) {
