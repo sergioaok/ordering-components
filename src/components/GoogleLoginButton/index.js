@@ -9,7 +9,8 @@ export const GoogleLoginButton = (props) => {
     onFailure,
     onRequest,
     responseType,
-      handleSuccessGoogleLogin,
+    handleSuccessGoogleLogin,
+    handleSuccessGoogleLogout,
     initParams,
     buttonStyle,
     handleGoogleLoginClick
@@ -17,7 +18,7 @@ export const GoogleLoginButton = (props) => {
 
   const [ordering] = useApi()
   const [formState, setFormState] = useState({ loading: false, result: { error: false } })
-  const [loaded, setLoaded] = useState(false)
+  const [googleStatus, setGoogleStatus] = useState({ loaded: false, logged: false })
   let wasUnmounted = false
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export const GoogleLoginButton = (props) => {
           .then(
             async (res) => {
               if (!wasUnmounted) {
-                setLoaded(true)
+                setGoogleStatus({ ...googleStatus, loaded: true })
                 const signedIn = res.isSignedIn.get()
                 if (signedIn) {
                   handleSigninSuccess(res.currentUser.get())
@@ -66,16 +67,16 @@ export const GoogleLoginButton = (props) => {
               }
             },
             () => {
-              setLoaded(true)
+              setGoogleStatus({ ...googleStatus, loaded: true })
             }
           ).catch(() => {})
       } else if (GoogleAuth.isSignedIn.get()) {
         if (!wasUnmounted) {
-          setLoaded(true)
+          setGoogleStatus({ ...googleStatus, loaded: true })
           handleSigninSuccess(GoogleAuth.currentUser.get())
         }
       } else if (!wasUnmounted) {
-        wasUnmounted && setLoaded(true)
+        wasUnmounted && setGoogleStatus({ ...googleStatus, loaded: true })
       }
     })
     window.gapi.load('signin2', () => {
@@ -97,9 +98,11 @@ export const GoogleLoginButton = (props) => {
     if (e) {
       e.preventDefault() // to prevent submit if used within form
     }
-    if (loaded) {
+    if (googleStatus.loaded) {
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
-      onRequest()
+      if (onRequest) {
+        onRequest()
+      }
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(
           (res) => onSuccess(res),
@@ -107,27 +110,53 @@ export const GoogleLoginButton = (props) => {
         )
       } else {
         GoogleAuth.signIn(initParams).then(
-          (res) => handleSigninSuccess(res),
-          (err) => onFailure(err)
+          (res) => {
+            setFormState({ loading: false, result: { error: false } })
+            setGoogleStatus({ ...googleStatus, logged: true })
+            handleSigninSuccess(res)
+          },
+          (err) => {
+            setFormState({ loading: false, result: { error: true, result: 'Error login with Google' } })
+            if (onFailure) {
+              onFailure(err)
+            }
+          }
         )
       }
     }
   }
 
+  const signOut = (e) => {
+    if (e) {
+      e.preventDefault() // to prevent submit if used within form
+    }
+    if (googleStatus.loaded) {
+      const auth = window.gapi.auth2
+      const GoogleAuth = auth.getAuthInstance()
+
+      GoogleAuth.signOut.then(
+        auth.disconnect().then(() => {
+          setFormState({ loading: false, result: { error: false } })
+          setGoogleStatus({ ...googleStatus, logged: false })
+          if (handleSuccessGoogleLogout) {
+            handleSuccessGoogleLogout()
+          }
+        })
+      )
+    }
+  }
   /**
    * Function that return token of the user
-   * @param {object} result from Google
+   * @param {object} res from Google
    */
   const handleSigninSuccess = async (res) => {
     if (handleGoogleLoginClick) {
-      return handleGoogleLoginClick(res)
+      handleGoogleLoginClick(res)
+      return
     }
     const basicProfile = res.getBasicProfile()
     const authResponse = res.getAuthResponse()
-    console.log('basicProfile')
-    console.log(basicProfile)
-    console.log('authResponse')
-    console.log(authResponse)
+
     res.googleId = basicProfile.getId()
     res.tokenObj = authResponse
     res.tokenId = authResponse.id_token
@@ -141,12 +170,10 @@ export const GoogleLoginButton = (props) => {
       familyName: basicProfile.getFamilyName()
     }
 
-    // testing
+    // login with backend
     try {
       setFormState({ ...formState, loading: true })
       const response = await ordering.users().authGoogle({ access_token: authResponse?.access_token })
-      console.log('response')
-      console.log(response)
       setFormState({
         result: response.content,
         loading: false
@@ -154,10 +181,12 @@ export const GoogleLoginButton = (props) => {
       if (!response.content.error) {
         if (handleSuccessGoogleLogin) {
           handleSuccessGoogleLogin(response.content.result)
+        }
+        if (onSuccess) {
           onSuccess(response)
         }
       } else {
-        // handleFacebookLogout()
+        signOut()
       }
     } catch (err) {
       setFormState({
@@ -168,10 +197,6 @@ export const GoogleLoginButton = (props) => {
         loading: false
       })
     }
-
-    // const response = await ordering.users().auth(res)
-    // handleSuccessGoogleLogin(basicProfile)
-    // onSuccess(res)
   }
 
   return (
@@ -179,7 +204,10 @@ export const GoogleLoginButton = (props) => {
       {UIComponent && (
         <UIComponent
           {...props}
+          formState={formState}
+          googleStatus={googleStatus}
           signIn={signIn}
+          signOut={signOut}
         />
       )}
     </>

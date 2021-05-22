@@ -52,6 +52,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       onRequest = props.onRequest,
       responseType = props.responseType,
       handleSuccessGoogleLogin = props.handleSuccessGoogleLogin,
+      handleSuccessGoogleLogout = props.handleSuccessGoogleLogout,
       initParams = props.initParams,
       buttonStyle = props.buttonStyle,
       handleGoogleLoginClick = props.handleGoogleLoginClick;
@@ -70,10 +71,13 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       formState = _useState2[0],
       setFormState = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(false),
+  var _useState3 = (0, _react.useState)({
+    loaded: false,
+    logged: false
+  }),
       _useState4 = _slicedToArray(_useState3, 2),
-      loaded = _useState4[0],
-      setLoaded = _useState4[1];
+      googleStatus = _useState4[0],
+      setGoogleStatus = _useState4[1];
 
   var wasUnmounted = false;
   (0, _react.useEffect)(function () {
@@ -122,7 +126,9 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     if (!wasUnmounted) {
-                      setLoaded(true);
+                      setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
+                        loaded: true
+                      }));
                       signedIn = res.isSignedIn.get();
 
                       if (signedIn) {
@@ -142,15 +148,21 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
             return _ref.apply(this, arguments);
           };
         }(), function () {
-          setLoaded(true);
+          setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
+            loaded: true
+          }));
         }).catch(function () {});
       } else if (GoogleAuth.isSignedIn.get()) {
         if (!wasUnmounted) {
-          setLoaded(true);
+          setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
+            loaded: true
+          }));
           handleSigninSuccess(GoogleAuth.currentUser.get());
         }
       } else if (!wasUnmounted) {
-        wasUnmounted && setLoaded(true);
+        wasUnmounted && setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
+          loaded: true
+        }));
       }
     });
     window.gapi.load('signin2', function () {
@@ -173,9 +185,12 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       e.preventDefault(); // to prevent submit if used within form
     }
 
-    if (loaded) {
+    if (googleStatus.loaded) {
       var GoogleAuth = window.gapi.auth2.getAuthInstance();
-      onRequest();
+
+      if (onRequest) {
+        onRequest();
+      }
 
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(function (res) {
@@ -185,16 +200,61 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
         });
       } else {
         GoogleAuth.signIn(initParams).then(function (res) {
-          return handleSigninSuccess(res);
+          setFormState({
+            loading: false,
+            result: {
+              error: false
+            }
+          });
+          setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
+            logged: true
+          }));
+          handleSigninSuccess(res);
         }, function (err) {
-          return onFailure(err);
+          setFormState({
+            loading: false,
+            result: {
+              error: true,
+              result: 'Error login with Google'
+            }
+          });
+
+          if (onFailure) {
+            onFailure(err);
+          }
         });
       }
     }
   };
+
+  var signOut = function signOut(e) {
+    if (e) {
+      e.preventDefault(); // to prevent submit if used within form
+    }
+
+    if (googleStatus.loaded) {
+      var auth = window.gapi.auth2;
+      var GoogleAuth = auth.getAuthInstance();
+      GoogleAuth.signOut.then(auth.disconnect().then(function () {
+        setFormState({
+          loading: false,
+          result: {
+            error: false
+          }
+        });
+        setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
+          logged: false
+        }));
+
+        if (handleSuccessGoogleLogout) {
+          handleSuccessGoogleLogout();
+        }
+      }));
+    }
+  };
   /**
    * Function that return token of the user
-   * @param {object} result from Google
+   * @param {object} res from Google
    */
 
 
@@ -206,19 +266,16 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
           switch (_context2.prev = _context2.next) {
             case 0:
               if (!handleGoogleLoginClick) {
-                _context2.next = 2;
+                _context2.next = 3;
                 break;
               }
 
-              return _context2.abrupt("return", handleGoogleLoginClick(res));
+              handleGoogleLoginClick(res);
+              return _context2.abrupt("return");
 
-            case 2:
+            case 3:
               basicProfile = res.getBasicProfile();
               authResponse = res.getAuthResponse();
-              console.log('basicProfile');
-              console.log(basicProfile);
-              console.log('authResponse');
-              console.log(authResponse);
               res.googleId = basicProfile.getId();
               res.tokenObj = authResponse;
               res.tokenId = authResponse.id_token;
@@ -230,21 +287,19 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 name: basicProfile.getName(),
                 givenName: basicProfile.getGivenName(),
                 familyName: basicProfile.getFamilyName()
-              }; // testing
+              }; // login with backend
 
-              _context2.prev = 13;
+              _context2.prev = 10;
               setFormState(_objectSpread(_objectSpread({}, formState), {}, {
                 loading: true
               }));
-              _context2.next = 17;
+              _context2.next = 14;
               return ordering.users().authGoogle({
                 access_token: authResponse === null || authResponse === void 0 ? void 0 : authResponse.access_token
               });
 
-            case 17:
+            case 14:
               response = _context2.sent;
-              console.log('response');
-              console.log(response);
               setFormState({
                 result: response.content,
                 loading: false
@@ -253,17 +308,21 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
               if (!response.content.error) {
                 if (handleSuccessGoogleLogin) {
                   handleSuccessGoogleLogin(response.content.result);
+                }
+
+                if (onSuccess) {
                   onSuccess(response);
                 }
-              } else {// handleFacebookLogout()
+              } else {
+                signOut();
               }
 
-              _context2.next = 27;
+              _context2.next = 22;
               break;
 
-            case 24:
-              _context2.prev = 24;
-              _context2.t0 = _context2["catch"](13);
+            case 19:
+              _context2.prev = 19;
+              _context2.t0 = _context2["catch"](10);
               setFormState({
                 result: {
                   error: true,
@@ -272,12 +331,12 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 loading: false
               });
 
-            case 27:
+            case 22:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[13, 24]]);
+      }, _callee2, null, [[10, 19]]);
     }));
 
     return function handleSigninSuccess(_x2) {
@@ -286,7 +345,10 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
   }();
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
-    signIn: signIn
+    formState: formState,
+    googleStatus: googleStatus,
+    signIn: signIn,
+    signOut: signOut
   })));
 };
 
