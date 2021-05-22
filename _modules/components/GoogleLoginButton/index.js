@@ -192,6 +192,8 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
         onRequest();
       }
 
+      console.log(responseType);
+
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(function (res) {
           return onSuccess(res);
@@ -300,6 +302,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
             case 14:
               response = _context2.sent;
+              console.log(response);
               setFormState({
                 result: response.content,
                 loading: false
@@ -317,12 +320,13 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 signOut();
               }
 
-              _context2.next = 22;
+              _context2.next = 24;
               break;
 
-            case 19:
-              _context2.prev = 19;
+            case 20:
+              _context2.prev = 20;
               _context2.t0 = _context2["catch"](10);
+              console.log('catch err');
               setFormState({
                 result: {
                   error: true,
@@ -331,12 +335,12 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 loading: false
               });
 
-            case 22:
+            case 24:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[10, 19]]);
+      }, _callee2, null, [[10, 20]]);
     }));
 
     return function handleSigninSuccess(_x2) {
