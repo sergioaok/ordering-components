@@ -79,17 +79,15 @@ export const GoogleLoginButton = (props) => {
         wasUnmounted && setGoogleStatus({ ...googleStatus, loaded: true })
       }
     })
-    if (buttonStyle) {
-      window.gapi.load('signin2', () => {
-        if (!wasUnmounted) {
-          window.gapi.signin2.render('my-signin2', {
-            ...buttonStyle,
-            onsuccess: onSuccess,
-            onfailure: onFailure
-          })
-        }
-      })
-    }
+    window.gapi.load('signin2', () => {
+      if (!wasUnmounted) {
+        window.gapi.signin2.render('my-signin2', {
+          ...buttonStyle,
+          onsuccess: onSuccess,
+          onfailure: onFailure
+        })
+      }
+    })
   }
 
   /**

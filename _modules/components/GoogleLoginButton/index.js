@@ -165,17 +165,14 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
         }));
       }
     });
-
-    if (buttonStyle) {
-      window.gapi.load('signin2', function () {
-        if (!wasUnmounted) {
-          window.gapi.signin2.render('my-signin2', _objectSpread(_objectSpread({}, buttonStyle), {}, {
-            onsuccess: onSuccess,
-            onfailure: onFailure
-          }));
-        }
-      });
-    }
+    window.gapi.load('signin2', function () {
+      if (!wasUnmounted) {
+        window.gapi.signin2.render('my-signin2', _objectSpread(_objectSpread({}, buttonStyle), {}, {
+          onsuccess: onSuccess,
+          onfailure: onFailure
+        }));
+      }
+    });
   };
   /**
    * handling response of google
