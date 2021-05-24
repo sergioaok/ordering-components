@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -416,7 +416,7 @@ export const BusinessAndProductList = (props) => {
   }, [requestsState.products])
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <>
       {UIComponent && (
         <UIComponent
           {...props}
@@ -438,7 +438,7 @@ export const BusinessAndProductList = (props) => {
           updateProductModal={(val) => setProductModal({ ...productModal, product: val })}
         />
       )}
-    </Suspense>
+    </>
   )
 }
 

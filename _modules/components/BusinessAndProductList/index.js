@@ -632,9 +632,7 @@ var BusinessAndProductList = function BusinessAndProductList(props) {
       request && request.cancel && request.cancel();
     };
   }, [requestsState.products]);
-  return /*#__PURE__*/_react.default.createElement(_react.Suspense, {
-    fallback: /*#__PURE__*/_react.default.createElement("div", null, "Loading...")
-  }, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, UIComponent && /*#__PURE__*/_react.default.createElement(UIComponent, _extends({}, props, {
     errors: errors,
     categorySelected: categorySelected,
     searchValue: searchValue,
