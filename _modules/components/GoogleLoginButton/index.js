@@ -81,6 +81,10 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
   var wasUnmounted = false;
   (0, _react.useEffect)(function () {
+    if (window.document.getElementById('google-login')) {
+      return;
+    }
+
     insertGapiScript();
     return function () {
       wasUnmounted = true;
@@ -96,6 +100,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
    */
 
   var insertGapiScript = function insertGapiScript() {
+    console.log('init google login');
     var js = window.document.createElement('script');
     js.id = 'google-login';
     js.src = 'https://apis.google.com/js/api.js';

@@ -22,6 +22,9 @@ export const GoogleLoginButton = (props) => {
   let wasUnmounted = false
 
   useEffect(() => {
+    if (window.document.getElementById('google-login')) {
+      return
+    }
     insertGapiScript()
     return () => {
       wasUnmounted = true
@@ -36,6 +39,7 @@ export const GoogleLoginButton = (props) => {
    * loading script for the google's api
    */
   const insertGapiScript = () => {
+    console.log('init google login')
     const js = window.document.createElement('script')
     js.id = 'google-login'
     js.src = 'https://apis.google.com/js/api.js'
