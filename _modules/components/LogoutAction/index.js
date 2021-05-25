@@ -53,7 +53,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  * Component to manage logout behavior without UI component
  */
 var LogoutAction = function LogoutAction(props) {
-  var _configs$facebook_id3;
+  var _configs$facebook_id3, _configs$google_login2;
 
   var UIComponent = props.UIComponent,
       handleSuccessLogout = props.handleSuccessLogout,
@@ -114,9 +114,41 @@ var LogoutAction = function LogoutAction(props) {
       fjs.parentNode.insertBefore(js, fjs);
     }
   }, [configs === null || configs === void 0 ? void 0 : (_configs$facebook_id3 = configs.facebook_id) === null || _configs$facebook_id3 === void 0 ? void 0 : _configs$facebook_id3.value]);
+  (0, _react.useEffect)(function () {
+    var _configs$google_login;
+
+    if (configs !== null && configs !== void 0 && (_configs$google_login = configs.google_login_client_id) !== null && _configs$google_login !== void 0 && _configs$google_login.value && !isNative) {
+      insertGapiScript();
+      return function () {
+        var element = document.getElementById('google-login');
+
+        if (element) {
+          element.parentNode.removeChild(element);
+        }
+      };
+    }
+  }, [configs === null || configs === void 0 ? void 0 : (_configs$google_login2 = configs.google_login_client_id) === null || _configs$google_login2 === void 0 ? void 0 : _configs$google_login2.value]);
+  /**
+   * loading script for the google's api
+   */
+
+  var insertGapiScript = function insertGapiScript() {
+    var js = window.document.createElement('script');
+    js.id = 'google-login';
+    js.src = 'https://apis.google.com/js/api.js';
+    js.async = true;
+    js.defer = true;
+
+    js.onload = function () {
+      window.gapi.load('auth2', function () {});
+    };
+
+    window.document.body.appendChild(js);
+  };
   /**
    * Default fuction for logout workflow
    */
+
 
   var handleLogoutClick = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {
