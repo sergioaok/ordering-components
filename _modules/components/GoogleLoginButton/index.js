@@ -294,7 +294,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
               }));
               _context2.next = 14;
               return ordering.users().authGoogle({
-                access_token: authResponse === null || authResponse === void 0 ? void 0 : authResponse.access_token
+                access_token: authResponse === null || authResponse === void 0 ? void 0 : authResponse.id_token
               });
 
             case 14:
