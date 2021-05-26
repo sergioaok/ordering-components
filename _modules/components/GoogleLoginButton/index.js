@@ -174,15 +174,18 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
           loaded: true
         }));
       }
-    }); // window.gapi.load('signin2', () => {
-    //   if (!wasUnmounted) {
-    //     window.gapi.signin2.render('my-signin2', {
-    //       ...buttonStyle,
-    //       onsuccess: onSuccess,
-    //       onfailure: onFailure
-    //     })
-    //   }
-    // })
+    });
+
+    if (buttonStyle) {
+      window.gapi.load('signin2', function () {
+        if (!wasUnmounted) {
+          window.gapi.signin2.render('my-signin2', _objectSpread(_objectSpread({}, buttonStyle), {}, {
+            onsuccess: onSuccess,
+            onfailure: onFailure
+          }));
+        }
+      });
+    }
   };
   /**
    * handling response of google
@@ -204,6 +207,8 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       if (onRequest) {
         onRequest();
       }
+
+      console.log('responseType: ' + responseType);
 
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(function (res) {

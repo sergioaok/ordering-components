@@ -85,15 +85,17 @@ export const GoogleLoginButton = (props) => {
         wasUnmounted && setGoogleStatus({ ...googleStatus, loaded: true })
       }
     })
-    // window.gapi.load('signin2', () => {
-    //   if (!wasUnmounted) {
-    //     window.gapi.signin2.render('my-signin2', {
-    //       ...buttonStyle,
-    //       onsuccess: onSuccess,
-    //       onfailure: onFailure
-    //     })
-    //   }
-    // })
+    if (buttonStyle) {
+      window.gapi.load('signin2', () => {
+        if (!wasUnmounted) {
+          window.gapi.signin2.render('my-signin2', {
+            ...buttonStyle,
+            onsuccess: onSuccess,
+            onfailure: onFailure
+          })
+        }
+      })
+    }
   }
 
   /**
@@ -111,6 +113,7 @@ export const GoogleLoginButton = (props) => {
       if (onRequest) {
         onRequest()
       }
+      console.log('responseType: ' + responseType)
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(
           (res) => onSuccess(res),
