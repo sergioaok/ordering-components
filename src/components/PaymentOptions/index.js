@@ -75,7 +75,7 @@ export const PaymentOptions = (props) => {
    * @param {Object} val object with information of payment method selected
    */
   const handlePaymethodClick = (paymethod) => {
-    console.log('handlePaymethodClick')
+    console.log('handlePaymethodClick', paymethod)
     setPaymethodsSelected(paymethod)
     handlePaymethodDataChange({})
   }

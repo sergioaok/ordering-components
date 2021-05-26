@@ -170,7 +170,7 @@ var PaymentOptions = function PaymentOptions(props) {
 
 
   var handlePaymethodClick = function handlePaymethodClick(paymethod) {
-    console.log('handlePaymethodClick');
+    console.log('handlePaymethodClick', paymethod);
     setPaymethodsSelected(paymethod);
     handlePaymethodDataChange({});
   };
