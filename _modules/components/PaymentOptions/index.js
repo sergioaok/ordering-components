@@ -183,6 +183,7 @@ var PaymentOptions = function PaymentOptions(props) {
 
   var handlePaymethodDataChange = function handlePaymethodDataChange(data) {
     console.log('handlePaymethodDataChange', data);
+    console.log('paymethodSelected', paymethodSelected);
     setPaymethodData(data);
 
     if (paymethodSelected) {
