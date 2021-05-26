@@ -54,6 +54,7 @@ export const GoogleLoginButton = (props) => {
   const initializeGoogleSignIn = () => {
     console.log('initializeGoogleSignIn')
     window.gapi.load('auth2', () => {
+      setGoogleStatus({ ...googleStatus, loaded: true })
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
       if (!GoogleAuth) {
         console.log('!GoogleAuth')
