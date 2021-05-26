@@ -82,6 +82,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
   var wasUnmounted = false;
   (0, _react.useEffect)(function () {
     if (window.document.getElementById('google-login')) {
+      wasUnmounted = true;
       return;
     }
 
@@ -119,10 +120,12 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
 
   var initializeGoogleSignIn = function initializeGoogleSignIn() {
+    console.log('initializeGoogleSignIn');
     window.gapi.load('auth2', function () {
       var GoogleAuth = window.gapi.auth2.getAuthInstance();
 
       if (!GoogleAuth) {
+        console.log('!GoogleAuth');
         window.gapi.auth2.init(initParams).then( /*#__PURE__*/function () {
           var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {
             var signedIn;

@@ -23,6 +23,7 @@ export const GoogleLoginButton = (props) => {
 
   useEffect(() => {
     if (window.document.getElementById('google-login')) {
+      wasUnmounted = true
       return
     }
     insertGapiScript()
@@ -55,9 +56,11 @@ export const GoogleLoginButton = (props) => {
    * Start Login google
    */
   const initializeGoogleSignIn = () => {
+    console.log('initializeGoogleSignIn')
     window.gapi.load('auth2', () => {
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
       if (!GoogleAuth) {
+        console.log('!GoogleAuth')
         window.gapi.auth2
           .init(initParams)
           .then(
