@@ -22,17 +22,13 @@ export const GoogleLoginButton = (props) => {
   let wasUnmounted = false
 
   useEffect(() => {
-    if (window.document.getElementById('google-login')) {
-      wasUnmounted = true
-      return
+    const element = document.getElementById('google-login')
+    if (element) {
+      element.parentNode.removeChild(element)
     }
     insertGapiScript()
     return () => {
       wasUnmounted = true
-      const element = document.getElementById('google-login')
-      if (element) {
-        element.parentNode.removeChild(element)
-      }
     }
   }, [])
 
@@ -78,11 +74,13 @@ export const GoogleLoginButton = (props) => {
             }
           ).catch(() => {})
       } else if (GoogleAuth.isSignedIn.get()) {
+        console.log('GoogleAuth.isSignedIn.get()')
         if (!wasUnmounted) {
           setGoogleStatus({ ...googleStatus, loaded: true })
           handleSigninSuccess(GoogleAuth.currentUser.get())
         }
       } else if (!wasUnmounted) {
+        console.log('!wasUnmounted')
         wasUnmounted && setGoogleStatus({ ...googleStatus, loaded: true })
       }
     })

@@ -81,19 +81,15 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
   var wasUnmounted = false;
   (0, _react.useEffect)(function () {
-    if (window.document.getElementById('google-login')) {
-      wasUnmounted = true;
-      return;
+    var element = document.getElementById('google-login');
+
+    if (element) {
+      element.parentNode.removeChild(element);
     }
 
     insertGapiScript();
     return function () {
       wasUnmounted = true;
-      var element = document.getElementById('google-login');
-
-      if (element) {
-        element.parentNode.removeChild(element);
-      }
     };
   }, []);
   /**
@@ -161,6 +157,8 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
           }));
         }).catch(function () {});
       } else if (GoogleAuth.isSignedIn.get()) {
+        console.log('GoogleAuth.isSignedIn.get()');
+
         if (!wasUnmounted) {
           setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
             loaded: true
@@ -168,6 +166,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
           handleSigninSuccess(GoogleAuth.currentUser.get());
         }
       } else if (!wasUnmounted) {
+        console.log('!wasUnmounted');
         wasUnmounted && setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
           loaded: true
         }));
