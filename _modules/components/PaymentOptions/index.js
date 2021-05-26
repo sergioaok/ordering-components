@@ -131,6 +131,7 @@ var PaymentOptions = function PaymentOptions(props) {
               _yield$ordering$busin2 = _yield$ordering$busin.content;
               error = _yield$ordering$busin2.error;
               result = _yield$ordering$busin2.result;
+              console.log(result);
 
               if (!error) {
                 paymethodsList.paymethods = parsePaymethods(result.paymethods);
@@ -141,23 +142,23 @@ var PaymentOptions = function PaymentOptions(props) {
                 loading: false,
                 paymethods: error ? [] : parsePaymethods(result.paymethods)
               }));
-              _context.next = 14;
+              _context.next = 15;
               break;
 
-            case 11:
-              _context.prev = 11;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](0);
               setPaymethodsList(_objectSpread(_objectSpread({}, paymethodsList), {}, {
                 loading: false,
                 error: [_context.t0.message]
               }));
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 11]]);
+      }, _callee, null, [[0, 12]]);
     }));
 
     return function getPaymentOptions() {

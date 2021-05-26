@@ -52,6 +52,7 @@ export const PaymentOptions = (props) => {
   const getPaymentOptions = async () => {
     try {
       const { content: { error, result } } = await ordering.businesses(businessId).get()
+      console.log(result)
       if (!error) {
         paymethodsList.paymethods = parsePaymethods(result.paymethods)
       }
