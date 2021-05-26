@@ -224,6 +224,7 @@ var LoginForm = function LoginForm(props) {
 
               if (isReCaptchaEnable) {
                 window.grecaptcha.reset();
+                setReCaptchaValue(null);
               }
 
               if (error) {
@@ -336,15 +337,6 @@ var LoginForm = function LoginForm(props) {
       return _ref.apply(this, arguments);
     };
   }();
-  /**
-   * Update recaptcha value
-   * @param {string} value of recaptcha
-   */
-
-
-  var setReCaptcha = function setReCaptcha(value) {
-    setReCaptchaValue(value);
-  };
 
   (0, _react.useEffect)(function () {
     var _configs$security_rec;
@@ -532,7 +524,7 @@ var LoginForm = function LoginForm(props) {
     handleSendVerifyCode: sendVerifyPhoneCode,
     handleCheckPhoneCode: checkVerifyPhoneCode,
     enableReCaptcha: isReCaptchaEnable,
-    handleReCaptcha: setReCaptcha
+    handleReCaptcha: setReCaptchaValue
   })));
 };
 

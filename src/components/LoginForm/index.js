@@ -88,6 +88,7 @@ export const LoginForm = (props) => {
 
       if (isReCaptchaEnable) {
         window.grecaptcha.reset()
+        setReCaptchaValue(null)
       }
 
       if (!error) {
@@ -150,14 +151,6 @@ export const LoginForm = (props) => {
         loading: false
       })
     }
-  }
-
-  /**
-   * Update recaptcha value
-   * @param {string} value of recaptcha
-   */
-  const setReCaptcha = (value) => {
-    setReCaptchaValue(value)
   }
 
   useEffect(() => {
@@ -278,7 +271,7 @@ export const LoginForm = (props) => {
           handleSendVerifyCode={sendVerifyPhoneCode}
           handleCheckPhoneCode={checkVerifyPhoneCode}
           enableReCaptcha={isReCaptchaEnable}
-          handleReCaptcha={setReCaptcha}
+          handleReCaptcha={setReCaptchaValue}
         />
       )}
     </>
