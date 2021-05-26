@@ -23,7 +23,7 @@ export const PaymentOptions = (props) => {
   } = props
 
   const [ordering] = useApi()
-  const [orderState] = useOrder()
+  const [orderState, { changePaymethod }] = useOrder()
   const orderTotal = orderState.carts?.[`businessId:${businessId}`]?.total || 0
 
   const [paymethodsList, setPaymethodsList] = useState({ paymethods: [], loading: true, error: null })
@@ -76,6 +76,9 @@ export const PaymentOptions = (props) => {
    */
   const handlePaymethodClick = (paymethod) => {
     console.log('handlePaymethodClick', paymethod)
+    if (paymethod !== null) {
+      changePaymethod(businessId, paymethod.id)
+    }
     setPaymethodsSelected(paymethod)
     handlePaymethodDataChange({})
   }
