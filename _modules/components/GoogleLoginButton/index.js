@@ -97,7 +97,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
    */
 
   var insertGapiScript = function insertGapiScript() {
-    console.log('init google login');
     var js = window.document.createElement('script');
     js.id = 'google-login';
     js.src = 'https://apis.google.com/js/api.js';
@@ -116,7 +115,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
 
   var initializeGoogleSignIn = function initializeGoogleSignIn() {
-    console.log('initializeGoogleSignIn');
     window.gapi.load('auth2', function () {
       setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
         loaded: true
@@ -124,7 +122,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
       var GoogleAuth = window.gapi.auth2.getAuthInstance();
 
       if (!GoogleAuth) {
-        console.log('!GoogleAuth');
         window.gapi.auth2.init(initParams).then( /*#__PURE__*/function () {
           var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {
             var signedIn;
@@ -133,9 +130,6 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     if (!wasUnmounted) {
-                      setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
-                        loaded: true
-                      }));
                       signedIn = res.isSignedIn.get();
 
                       if (signedIn) {
@@ -154,25 +148,11 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
           return function (_x) {
             return _ref.apply(this, arguments);
           };
-        }(), function () {
-          setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
-            loaded: true
-          }));
-        }).catch(function () {});
+        }()).catch(function () {});
       } else if (GoogleAuth.isSignedIn.get()) {
-        console.log('GoogleAuth.isSignedIn.get()');
-
         if (!wasUnmounted) {
-          setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
-            loaded: true
-          }));
           handleSigninSuccess(GoogleAuth.currentUser.get());
         }
-      } else if (!wasUnmounted) {
-        console.log('!wasUnmounted');
-        wasUnmounted && setGoogleStatus(_objectSpread(_objectSpread({}, googleStatus), {}, {
-          loaded: true
-        }));
       }
     });
 
@@ -194,21 +174,16 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
 
   var signIn = function signIn(e) {
-    console.log('signIn with Google');
-
     if (e) {
       e.preventDefault(); // to prevent submit if used within form
     }
 
     if (googleStatus.loaded) {
-      console.log('Google is loaded');
       var GoogleAuth = window.gapi.auth2.getAuthInstance();
 
       if (onRequest) {
         onRequest();
       }
-
-      console.log('responseType: ' + responseType);
 
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(function (res) {

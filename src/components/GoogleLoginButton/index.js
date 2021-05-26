@@ -36,7 +36,6 @@ export const GoogleLoginButton = (props) => {
    * loading script for the google's api
    */
   const insertGapiScript = () => {
-    console.log('init google login')
     const js = window.document.createElement('script')
     js.id = 'google-login'
     js.src = 'https://apis.google.com/js/api.js'
@@ -52,37 +51,26 @@ export const GoogleLoginButton = (props) => {
    * Start Login google
    */
   const initializeGoogleSignIn = () => {
-    console.log('initializeGoogleSignIn')
     window.gapi.load('auth2', () => {
       setGoogleStatus({ ...googleStatus, loaded: true })
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
       if (!GoogleAuth) {
-        console.log('!GoogleAuth')
         window.gapi.auth2
           .init(initParams)
           .then(
             async (res) => {
               if (!wasUnmounted) {
-                setGoogleStatus({ ...googleStatus, loaded: true })
                 const signedIn = res.isSignedIn.get()
                 if (signedIn) {
                   handleSigninSuccess(res.currentUser.get())
                 }
               }
-            },
-            () => {
-              setGoogleStatus({ ...googleStatus, loaded: true })
             }
           ).catch(() => {})
       } else if (GoogleAuth.isSignedIn.get()) {
-        console.log('GoogleAuth.isSignedIn.get()')
         if (!wasUnmounted) {
-          setGoogleStatus({ ...googleStatus, loaded: true })
           handleSigninSuccess(GoogleAuth.currentUser.get())
         }
-      } else if (!wasUnmounted) {
-        console.log('!wasUnmounted')
-        wasUnmounted && setGoogleStatus({ ...googleStatus, loaded: true })
       }
     })
     if (buttonStyle) {
@@ -103,17 +91,14 @@ export const GoogleLoginButton = (props) => {
    * @param {EventTarget} e Click button event
    */
   const signIn = (e) => {
-    console.log('signIn with Google')
     if (e) {
       e.preventDefault() // to prevent submit if used within form
     }
     if (googleStatus.loaded) {
-      console.log('Google is loaded')
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
       if (onRequest) {
         onRequest()
       }
-      console.log('responseType: ' + responseType)
       if (responseType === 'code') {
         GoogleAuth.grantOfflineAccess(initParams).then(
           (res) => onSuccess(res),
