@@ -84,6 +84,7 @@ export const PaymentOptions = (props) => {
   }
 
   const handlePaymethodDataChange = (data) => {
+    console.log('handlePaymethodDataChange', data)
     setPaymethodData(data)
     if (paymethodSelected) {
       onPaymentChange && onPaymentChange({
