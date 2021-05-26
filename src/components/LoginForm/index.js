@@ -85,7 +85,11 @@ export const LoginForm = (props) => {
       }
       
       const { content: { error, result } } = await ordering.users().auth(_credentials)
-      
+
+      if (isReCaptchaEnable) {
+        window.grecaptcha.reset()
+      }
+
       if (!error) {
         if (useDefualtSessionManager) {
           if (allowedLevels && allowedLevels?.length > 0) {
