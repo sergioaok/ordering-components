@@ -186,11 +186,14 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
 
 
   var signIn = function signIn(e) {
+    console.log('signIn with Google');
+
     if (e) {
       e.preventDefault(); // to prevent submit if used within form
     }
 
     if (googleStatus.loaded) {
+      console.log('Google is loaded');
       var GoogleAuth = window.gapi.auth2.getAuthInstance();
 
       if (onRequest) {

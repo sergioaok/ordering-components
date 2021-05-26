@@ -99,10 +99,12 @@ export const GoogleLoginButton = (props) => {
    * @param {EventTarget} e Click button event
    */
   const signIn = (e) => {
+    console.log('signIn with Google')
     if (e) {
       e.preventDefault() // to prevent submit if used within form
     }
     if (googleStatus.loaded) {
+      console.log('Google is loaded')
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
       if (onRequest) {
         onRequest()
