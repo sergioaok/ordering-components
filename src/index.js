@@ -85,6 +85,20 @@ import { AppleLogin } from './components/AppleLogin'
 import { ReCaptcha } from './components/ReCaptcha'
 import { CODES } from './constants/code-numbers'
 
+// components for admin
+import { AdminMessages } from './components-admin/AdminMessages'
+import { AdminOrderDetails } from './components-admin/AdminOrderDetails'
+import { AdminOrdersList } from './components-admin/AdminOrdersList'
+import { CheckPassword } from './components-admin/CheckPassword'
+import { DriversList } from './components-admin/DriversList'
+import { ExportCSV } from './components-admin/ExportCSV'
+import { LogisticInformation } from './components-admin/LogisticInformation'
+import { Logistics } from './components-admin/Logistics'
+import { MetaFields } from './components-admin/MetaFields'
+import { OrdersFilter } from './components-admin/OrdersFilter'
+import { OrdersManage } from './components-admin/OrdersManage'
+import { OrdersOverview } from './components-admin/OrdersOverview'
+
 export {
   AddressDetails,
   AddressForm,
@@ -161,6 +175,19 @@ export {
   ResetPassword,
   Analytics,
   ReCaptcha,
+  // components for admin
+  AdminMessages,
+  AdminOrdersList,
+  AdminOrderDetails,
+  CheckPassword,
+  DriversList,
+  ExportCSV,
+  LogisticInformation,
+  Logistics,
+  MetaFields,
+  OrdersFilter,
+  OrdersManage,
+  OrdersOverview,
   // Contexts
   ConfigContext,
   ConfigProvider,
