@@ -78,8 +78,9 @@ export const LanguageProvider = ({ children, strategy }) => {
   }, [state.language?.code, ordering])
 
   useEffect(() => {
+    if (!ordering?.project) return
     setLanguageFromLocalStorage()
-  }, [])
+  }, [ordering])
 
   useEffect(() => {
     apiHelper.setLanguage(state?.language?.code)

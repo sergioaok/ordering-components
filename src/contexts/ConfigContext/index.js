@@ -106,7 +106,7 @@ export const ConfigProvider = ({ children }) => {
           key: 'dates_general_format',
           value: result?.dates_moment_format?.value ||
           (result?.format_time?.value === '24' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD hh:mm:ssa')
-        },
+        }
       }
       const configsResult = {
         ...customConfigs,
@@ -132,10 +132,11 @@ export const ConfigProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    if (!ordering?.project) return
     if (!languageState.loading) {
       refreshConfigs()
     }
-  }, [languageState])
+  }, [languageState, ordering])
 
   return (
     <ConfigContext.Provider value={[state, functions]}>
