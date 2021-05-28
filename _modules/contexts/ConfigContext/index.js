@@ -235,10 +235,12 @@ var ConfigProvider = function ConfigProvider(_ref) {
     refreshConfigs: refreshConfigs
   };
   (0, _react.useEffect)(function () {
+    if (!(ordering !== null && ordering !== void 0 && ordering.project)) return;
+
     if (!languageState.loading) {
       refreshConfigs();
     }
-  }, [languageState]);
+  }, [languageState, ordering]);
   return /*#__PURE__*/_react.default.createElement(ConfigContext.Provider, {
     value: [state, functions]
   }, children);
