@@ -86,6 +86,7 @@ import { ReCaptcha } from './components/ReCaptcha'
 import { CODES } from './constants/code-numbers'
 
 // components for admin
+import { AdminLoginForm } from './components-admin/AdminLoginForm'
 import { AdminMessages } from './components-admin/AdminMessages'
 import { AdminOrderDetails } from './components-admin/AdminOrderDetails'
 import { AdminOrdersList } from './components-admin/AdminOrdersList'
@@ -176,6 +177,7 @@ export {
   Analytics,
   ReCaptcha,
   // components for admin
+  AdminLoginForm,
   AdminMessages,
   AdminOrdersList,
   AdminOrderDetails,
