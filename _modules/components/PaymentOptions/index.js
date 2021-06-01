@@ -164,31 +164,11 @@ var PaymentOptions = function PaymentOptions(props) {
       return _ref.apply(this, arguments);
     };
   }();
-
-  (0, _react.useEffect)(function () {
-    if (paymethods) {
-      var _orderState$carts2, _orderState$carts2$;
-
-      console.log(orderState);
-      var orderPaymethodId = ((_orderState$carts2 = orderState.carts) === null || _orderState$carts2 === void 0 ? void 0 : (_orderState$carts2$ = _orderState$carts2["businessId:".concat(businessId)]) === null || _orderState$carts2$ === void 0 ? void 0 : _orderState$carts2$.paymethod_id) || null; // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
-
-      console.log(paymethods);
-      console.log(orderPaymethodId);
-      var orderPaymethod = paymethods.find(function (paymethod) {
-        return paymethod.paymethod_id === orderPaymethodId;
-      });
-      console.log('orderPaymethod ', orderPaymethod);
-
-      if (orderPaymethod) {
-        setPaymethodsSelected(orderPaymethod.paymethod);
-      } // setDriverTipAmount(orderDriverTip)
-
-    }
-  }, [orderState, paymethods]);
   /**
    * Method to set payment option selected by user
    * @param {Object} val object with information of payment method selected
    */
+
 
   var handlePaymethodClick = function handlePaymethodClick(paymethod) {
     setPaymethodsSelected(paymethod);
@@ -196,7 +176,7 @@ var PaymentOptions = function PaymentOptions(props) {
   };
 
   var handlePaymethodDataChange = function handlePaymethodDataChange(data) {
-    if (paymethodSelected !== null) {
+    if (paymethodSelected && data) {
       changePaymethod(businessId, paymethodSelected.id, JSON.stringify(data));
     }
 

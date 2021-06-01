@@ -511,13 +511,10 @@ export const OrderProvider = ({ Alert, children, strategy }) => {
       if (!error) {
         state.carts[`businessId:${result.business_id}`] = result
         events.emit('cart_updated', result)
-      } else {
-        setAlert({ show: true, content: result })
       }
       setState({ ...state, loading: false })
       return !error
     } catch (err) {
-      setState({ ...state, loading: false })
       return false
     }
   }

@@ -1234,11 +1234,6 @@ var OrderProvider = function OrderProvider(_ref) {
               if (!error) {
                 state.carts["businessId:".concat(result.business_id)] = result;
                 events.emit('cart_updated', result);
-              } else {
-                setAlert({
-                  show: true,
-                  content: result
-                });
               }
 
               setState(_objectSpread(_objectSpread({}, state), {}, {
@@ -1249,12 +1244,9 @@ var OrderProvider = function OrderProvider(_ref) {
             case 22:
               _context12.prev = 22;
               _context12.t0 = _context12["catch"](8);
-              setState(_objectSpread(_objectSpread({}, state), {}, {
-                loading: false
-              }));
               return _context12.abrupt("return", false);
 
-            case 26:
+            case 25:
             case "end":
               return _context12.stop();
           }

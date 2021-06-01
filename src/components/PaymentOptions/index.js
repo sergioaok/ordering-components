@@ -70,24 +70,6 @@ export const PaymentOptions = (props) => {
     }
   }
 
-  useEffect(() => {
-    if (paymethods) {
-      console.log(orderState)
-      const orderPaymethodId = orderState.carts?.[`businessId:${businessId}`]?.paymethod_id || null
-      // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
-      console.log(paymethods)
-      console.log(orderPaymethodId)
-
-      const orderPaymethod = paymethods.find(paymethod => paymethod.paymethod_id === orderPaymethodId)
-      console.log('orderPaymethod ', orderPaymethod)
-
-      if (orderPaymethod) {
-        setPaymethodsSelected(orderPaymethod.paymethod)
-      }
-      // setDriverTipAmount(orderDriverTip)
-    }
-  }, [orderState, paymethods])
-
   /**
    * Method to set payment option selected by user
    * @param {Object} val object with information of payment method selected
@@ -98,7 +80,7 @@ export const PaymentOptions = (props) => {
   }
 
   const handlePaymethodDataChange = (data) => {
-    if (paymethodSelected !== null) {
+    if (paymethodSelected && data) {
       changePaymethod(businessId, paymethodSelected.id, JSON.stringify(data))
     }
     setPaymethodData(data)
