@@ -78,11 +78,11 @@ export const PaymentOptions = (props) => {
       console.log(paymethods)
       console.log(orderPaymethodId)
 
-      const orderPaymethod = paymethods.find(paymethod => paymethod.id === orderPaymethodId)
+      const orderPaymethod = paymethods.find(paymethod => paymethod.paymethod_id === orderPaymethodId)
       console.log('orderPaymethod ', orderPaymethod)
 
       if (orderPaymethod) {
-        setPaymethodsSelected(orderPaymethod)
+        setPaymethodsSelected(orderPaymethod.paymethod)
       }
       // setDriverTipAmount(orderDriverTip)
     }

@@ -175,12 +175,12 @@ var PaymentOptions = function PaymentOptions(props) {
       console.log(paymethods);
       console.log(orderPaymethodId);
       var orderPaymethod = paymethods.find(function (paymethod) {
-        return paymethod.id === orderPaymethodId;
+        return paymethod.paymethod_id === orderPaymethodId;
       });
       console.log('orderPaymethod ', orderPaymethod);
 
       if (orderPaymethod) {
-        setPaymethodsSelected(orderPaymethod);
+        setPaymethodsSelected(orderPaymethod.paymethod);
       } // setDriverTipAmount(orderDriverTip)
 
     }
