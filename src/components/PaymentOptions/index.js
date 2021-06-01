@@ -52,7 +52,6 @@ export const PaymentOptions = (props) => {
   const getPaymentOptions = async () => {
     try {
       const { content: { error, result } } = await ordering.businesses(businessId).get()
-      console.log(result)
       if (!error) {
         paymethodsList.paymethods = parsePaymethods(result.paymethods)
       }
@@ -71,6 +70,17 @@ export const PaymentOptions = (props) => {
     }
   }
 
+  useEffect(() => {
+    const orderPaymethodId = orderState.carts?.[`businessId:${businessId}`]?.paymethod_id || null
+    // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
+
+    const orderPaymethod = paymethods.find(paymethod => paymethod.id === orderPaymethodId)
+    console.log('orderPaymethod ', orderPaymethod)
+
+    setPaymethodsSelected(orderPaymethod)
+    // setDriverTipAmount(orderDriverTip)
+  }, [orderState])
+
   /**
    * Method to set payment option selected by user
    * @param {Object} val object with information of payment method selected
@@ -81,8 +91,6 @@ export const PaymentOptions = (props) => {
   }
 
   const handlePaymethodDataChange = (data) => {
-    console.log('handlePaymethodDataChange', data)
-    console.log('paymethodSelected', paymethodSelected)
     if (paymethodSelected !== null) {
       changePaymethod(businessId, paymethodSelected.id, JSON.stringify(data))
     }
