@@ -71,16 +71,19 @@ export const PaymentOptions = (props) => {
   }
 
   useEffect(() => {
-    console.log(paymethods)
-    console.log(paymethodsList)
     if (paymethods) {
+      console.log(orderState)
       const orderPaymethodId = orderState.carts?.[`businessId:${businessId}`]?.paymethod_id || null
       // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
+      console.log(paymethods)
+      console.log(orderPaymethodId)
 
       const orderPaymethod = paymethods.find(paymethod => paymethod.id === orderPaymethodId)
       console.log('orderPaymethod ', orderPaymethod)
 
-      setPaymethodsSelected(orderPaymethod)
+      if (orderPaymethod) {
+        setPaymethodsSelected(orderPaymethod)
+      }
       // setDriverTipAmount(orderDriverTip)
     }
   }, [orderState, paymethods])

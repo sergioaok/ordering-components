@@ -166,19 +166,23 @@ var PaymentOptions = function PaymentOptions(props) {
   }();
 
   (0, _react.useEffect)(function () {
-    console.log(paymethods);
-    console.log(paymethodsList);
-
     if (paymethods) {
       var _orderState$carts2, _orderState$carts2$;
 
+      console.log(orderState);
       var orderPaymethodId = ((_orderState$carts2 = orderState.carts) === null || _orderState$carts2 === void 0 ? void 0 : (_orderState$carts2$ = _orderState$carts2["businessId:".concat(businessId)]) === null || _orderState$carts2$ === void 0 ? void 0 : _orderState$carts2$.paymethod_id) || null; // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
 
+      console.log(paymethods);
+      console.log(orderPaymethodId);
       var orderPaymethod = paymethods.find(function (paymethod) {
         return paymethod.id === orderPaymethodId;
       });
       console.log('orderPaymethod ', orderPaymethod);
-      setPaymethodsSelected(orderPaymethod); // setDriverTipAmount(orderDriverTip)
+
+      if (orderPaymethod) {
+        setPaymethodsSelected(orderPaymethod);
+      } // setDriverTipAmount(orderDriverTip)
+
     }
   }, [orderState, paymethods]);
   /**
