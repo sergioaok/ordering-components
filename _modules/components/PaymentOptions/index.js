@@ -166,15 +166,20 @@ var PaymentOptions = function PaymentOptions(props) {
   }();
 
   (0, _react.useEffect)(function () {
-    var _orderState$carts2, _orderState$carts2$;
+    console.log(paymethods);
+    console.log(paymethodsList);
 
-    var orderPaymethodId = ((_orderState$carts2 = orderState.carts) === null || _orderState$carts2 === void 0 ? void 0 : (_orderState$carts2$ = _orderState$carts2["businessId:".concat(businessId)]) === null || _orderState$carts2$ === void 0 ? void 0 : _orderState$carts2$.paymethod_id) || null; // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
+    if (paymethods) {
+      var _orderState$carts2, _orderState$carts2$;
 
-    var orderPaymethod = paymethods.find(function (paymethod) {
-      return paymethod.id === orderPaymethodId;
-    });
-    console.log('orderPaymethod ', orderPaymethod);
-    setPaymethodsSelected(orderPaymethod); // setDriverTipAmount(orderDriverTip)
+      var orderPaymethodId = ((_orderState$carts2 = orderState.carts) === null || _orderState$carts2 === void 0 ? void 0 : (_orderState$carts2$ = _orderState$carts2["businessId:".concat(businessId)]) === null || _orderState$carts2$ === void 0 ? void 0 : _orderState$carts2$.paymethod_id) || null; // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
+
+      var orderPaymethod = paymethods.find(function (paymethod) {
+        return paymethod.id === orderPaymethodId;
+      });
+      console.log('orderPaymethod ', orderPaymethod);
+      setPaymethodsSelected(orderPaymethod); // setDriverTipAmount(orderDriverTip)
+    }
   }, [orderState]);
   /**
    * Method to set payment option selected by user

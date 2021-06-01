@@ -71,14 +71,18 @@ export const PaymentOptions = (props) => {
   }
 
   useEffect(() => {
-    const orderPaymethodId = orderState.carts?.[`businessId:${businessId}`]?.paymethod_id || null
-    // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
+    console.log(paymethods)
+    console.log(paymethodsList)
+    if (paymethods) {
+      const orderPaymethodId = orderState.carts?.[`businessId:${businessId}`]?.paymethod_id || null
+      // const orderPaymethodData = orderState.carts?.[`businessId:${businessId}`]?.paymethod_data || null
 
-    const orderPaymethod = paymethods.find(paymethod => paymethod.id === orderPaymethodId)
-    console.log('orderPaymethod ', orderPaymethod)
+      const orderPaymethod = paymethods.find(paymethod => paymethod.id === orderPaymethodId)
+      console.log('orderPaymethod ', orderPaymethod)
 
-    setPaymethodsSelected(orderPaymethod)
-    // setDriverTipAmount(orderDriverTip)
+      setPaymethodsSelected(orderPaymethod)
+      // setDriverTipAmount(orderDriverTip)
+    }
   }, [orderState])
 
   /**
