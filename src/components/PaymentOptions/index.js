@@ -77,9 +77,9 @@ export const PaymentOptions = (props) => {
    */
   const handlePaymethodClick = (paymethod) => {
     console.log('handlePaymethodClick', paymethod)
-    if (paymethod !== null) {
-      changePaymethod(businessId, paymethod.id)
-    }
+    // if (paymethod !== null) {
+    //   changePaymethod(businessId, paymethod.id)
+    // }
     setPaymethodsSelected(paymethod)
     handlePaymethodDataChange({})
   }

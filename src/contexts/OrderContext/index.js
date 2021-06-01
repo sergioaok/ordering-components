@@ -487,12 +487,15 @@ export const OrderProvider = ({ Alert, children, strategy }) => {
   /**
    * Change payment method
    */
-  const changePaymethod = async (businessId, paymethodId) => {
+  const changePaymethod = async (businessId, paymethodId, paymethodData) => {
     if (!businessId) {
       throw new Error('`businessId` is required.')
     }
     if (!paymethodId) {
       throw new Error('`paymethodId` is required.')
+    }
+    if (!paymethodData) {
+      throw new Error('`paymethodData` is required.')
     }
     if (!state.carts[`businessId:${businessId}`] || state.carts[`businessId:${businessId}`]?.paymethodId === paymethodId) {
       return
@@ -501,7 +504,8 @@ export const OrderProvider = ({ Alert, children, strategy }) => {
       setState({ ...state, loading: true })
       const body = {
         business_id: businessId,
-        paymethod_id: paymethodId
+        paymethod_id: paymethodId,
+        paymethod_data: paymethodData
       }
       const { content: { error, result } } = await ordering.setAccessToken(session.token).carts().changePaymethod(body, { headers: { 'X-Socket-Id-X': socket?.getId() } })
       if (!error) {

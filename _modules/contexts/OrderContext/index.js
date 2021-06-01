@@ -1168,7 +1168,7 @@ var OrderProvider = function OrderProvider(_ref) {
 
 
   var changePaymethod = /*#__PURE__*/function () {
-    var _ref13 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee12(businessId, paymethodId) {
+    var _ref13 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee12(businessId, paymethodId, paymethodData) {
       var _state$carts$3;
 
       var body, _yield$ordering$setAc17, _yield$ordering$setAc18, error, result;
@@ -1193,30 +1193,39 @@ var OrderProvider = function OrderProvider(_ref) {
               throw new Error('`paymethodId` is required.');
 
             case 4:
-              if (!(!state.carts["businessId:".concat(businessId)] || ((_state$carts$3 = state.carts["businessId:".concat(businessId)]) === null || _state$carts$3 === void 0 ? void 0 : _state$carts$3.paymethodId) === paymethodId)) {
+              if (paymethodData) {
                 _context12.next = 6;
+                break;
+              }
+
+              throw new Error('`paymethodData` is required.');
+
+            case 6:
+              if (!(!state.carts["businessId:".concat(businessId)] || ((_state$carts$3 = state.carts["businessId:".concat(businessId)]) === null || _state$carts$3 === void 0 ? void 0 : _state$carts$3.paymethodId) === paymethodId)) {
+                _context12.next = 8;
                 break;
               }
 
               return _context12.abrupt("return");
 
-            case 6:
-              _context12.prev = 6;
+            case 8:
+              _context12.prev = 8;
               setState(_objectSpread(_objectSpread({}, state), {}, {
                 loading: true
               }));
               body = {
                 business_id: businessId,
-                paymethod_id: paymethodId
+                paymethod_id: paymethodId,
+                paymethod_data: paymethodData
               };
-              _context12.next = 11;
+              _context12.next = 13;
               return ordering.setAccessToken(session.token).carts().changePaymethod(body, {
                 headers: {
                   'X-Socket-Id-X': socket === null || socket === void 0 ? void 0 : socket.getId()
                 }
               });
 
-            case 11:
+            case 13:
               _yield$ordering$setAc17 = _context12.sent;
               _yield$ordering$setAc18 = _yield$ordering$setAc17.content;
               error = _yield$ordering$setAc18.error;
@@ -1237,23 +1246,23 @@ var OrderProvider = function OrderProvider(_ref) {
               }));
               return _context12.abrupt("return", !error);
 
-            case 20:
-              _context12.prev = 20;
-              _context12.t0 = _context12["catch"](6);
+            case 22:
+              _context12.prev = 22;
+              _context12.t0 = _context12["catch"](8);
               setState(_objectSpread(_objectSpread({}, state), {}, {
                 loading: false
               }));
               return _context12.abrupt("return", false);
 
-            case 24:
+            case 26:
             case "end":
               return _context12.stop();
           }
         }
-      }, _callee12, null, [[6, 20]]);
+      }, _callee12, null, [[8, 22]]);
     }));
 
-    return function changePaymethod(_x17, _x18) {
+    return function changePaymethod(_x17, _x18, _x19) {
       return _ref13.apply(this, arguments);
     };
   }();
@@ -1359,7 +1368,7 @@ var OrderProvider = function OrderProvider(_ref) {
       }, _callee13, null, [[0, 24]]);
     }));
 
-    return function placeCart(_x19, _x20) {
+    return function placeCart(_x20, _x21) {
       return _ref14.apply(this, arguments);
     };
   }();
@@ -1442,7 +1451,7 @@ var OrderProvider = function OrderProvider(_ref) {
       }, _callee14, null, [[0, 19]]);
     }));
 
-    return function confirmCart(_x21, _x22) {
+    return function confirmCart(_x22, _x23) {
       return _ref15.apply(this, arguments);
     };
   }();
@@ -1528,7 +1537,7 @@ var OrderProvider = function OrderProvider(_ref) {
       }, _callee15, null, [[0, 20]]);
     }));
 
-    return function reorder(_x23) {
+    return function reorder(_x24) {
       return _ref16.apply(this, arguments);
     };
   }();

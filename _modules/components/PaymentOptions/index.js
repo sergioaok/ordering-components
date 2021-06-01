@@ -172,11 +172,9 @@ var PaymentOptions = function PaymentOptions(props) {
 
 
   var handlePaymethodClick = function handlePaymethodClick(paymethod) {
-    console.log('handlePaymethodClick', paymethod);
-
-    if (paymethod !== null) {
-      changePaymethod(businessId, paymethod.id);
-    }
+    console.log('handlePaymethodClick', paymethod); // if (paymethod !== null) {
+    //   changePaymethod(businessId, paymethod.id)
+    // }
 
     setPaymethodsSelected(paymethod);
     handlePaymethodDataChange({});
