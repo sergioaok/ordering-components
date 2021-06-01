@@ -180,7 +180,7 @@ var PaymentOptions = function PaymentOptions(props) {
       console.log('orderPaymethod ', orderPaymethod);
       setPaymethodsSelected(orderPaymethod); // setDriverTipAmount(orderDriverTip)
     }
-  }, [orderState]);
+  }, [orderState, paymethods]);
   /**
    * Method to set payment option selected by user
    * @param {Object} val object with information of payment method selected

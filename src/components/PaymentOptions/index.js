@@ -83,7 +83,7 @@ export const PaymentOptions = (props) => {
       setPaymethodsSelected(orderPaymethod)
       // setDriverTipAmount(orderDriverTip)
     }
-  }, [orderState])
+  }, [orderState, paymethods])
 
   /**
    * Method to set payment option selected by user
