@@ -172,10 +172,6 @@ var PaymentOptions = function PaymentOptions(props) {
 
 
   var handlePaymethodClick = function handlePaymethodClick(paymethod) {
-    console.log('handlePaymethodClick', paymethod); // if (paymethod !== null) {
-    //   changePaymethod(businessId, paymethod.id)
-    // }
-
     setPaymethodsSelected(paymethod);
     handlePaymethodDataChange({});
   };
@@ -183,6 +179,11 @@ var PaymentOptions = function PaymentOptions(props) {
   var handlePaymethodDataChange = function handlePaymethodDataChange(data) {
     console.log('handlePaymethodDataChange', data);
     console.log('paymethodSelected', paymethodSelected);
+
+    if (paymethodSelected !== null) {
+      changePaymethod(businessId, paymethodSelected.id, JSON.stringify(data));
+    }
+
     setPaymethodData(data);
 
     if (paymethodSelected) {
